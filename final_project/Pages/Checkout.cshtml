@@ -1,0 +1,8 @@
+﻿@page
+@model final_project.Pages.CheckoutModel
+@{
+    ViewData["Title"] = "Checkout";
+}
+
+
+<a asp-page="VinylsCatalog" onclick="return confirm('You're about to pay {price}.')"> Payment </a>

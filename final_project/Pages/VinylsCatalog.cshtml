@@ -1,0 +1,39 @@
+﻿@page
+@model final_project.Pages.VinylsCatalogModel
+@{
+    ViewData["Title"] = "Vinyls Catalog";
+}
+
+<body>
+    <table>
+        <thead>
+            <th> Cover Art </th>
+            <th> Price </th>
+            <th> Album </th>
+            <th> Artist </th>
+            <th> Type </th>
+            <th> Action </th>
+        </thead>
+        <tbody>
+            @foreach (var vinyl in Model.Vinyls)
+            {
+                if ( vinyl.Type == "vinyl")
+                {
+                    <tr>
+                        <td><img src=@vinyl.CoverArt alt="cover art" width="150" /></td>
+                        <td>@vinyl.Price</td>
+                        <td>@vinyl.Album</td>
+                        <td>@vinyl.Artist</td>
+                        <td>@vinyl.Type</td>
+                        <td>
+                            <a asp-page="/ViewProduct" asp-route-id=@vinyl.ProductID> View </a>
+                            <a asp-page-handler="Edit"> Edit </a>
+                            <a asp-page="/VinylsCatalog" asp-page-handler="Delete" asp-route-id=@vinyl.ProductID> Delete </a>
+                        </td>
+                    </tr>
+                }
+
+            }
+        </tbody>
+    </table>
+</body>

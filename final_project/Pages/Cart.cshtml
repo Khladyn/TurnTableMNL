@@ -1,0 +1,21 @@
+﻿@page
+@model final_project.Pages.CartModel
+@{
+    ViewData["Title"] = "My Cart";
+}
+
+<form>
+    <img src=@Model.product.CoverArt alt="cover art" width="350" />
+    <h4> @Model.product.Artist </h4>
+    <h4> @Model.product.Album </h4>
+    <h4> @Model.product.Type </h4>
+    <h4> @Model.product.Price </h4>
+    <h4> Quantity: </h4>
+    <input type="number" id="quantity" value="1"/>
+    <button onclick="return document.getElementById('quantity').value++"> + </button>
+    <h4> Total: </h4>
+    <h4> @Model.product.Price </h4>
+</form>
+
+
+<a asp-page="/Checkout" asp-route-id=@Model.product.ProductID> Checkout </a>

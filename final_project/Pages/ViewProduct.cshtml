@@ -1,0 +1,21 @@
+﻿@page
+@model final_project.Pages.ViewProductModel
+@{
+    ViewData["Title"] = "View Product";
+}
+
+
+<img src=@Model.product.CoverArt alt="cover art" width="350" />
+<h4> @Model.product.Artist </h4>
+<h4> @Model.product.Album </h4>
+<h4> @Model.product.Format </h4>
+<h4> @Model.product.Price </h4>
+<h4> @Model.product.Description </h4>
+<h4> @Model.product.Tracks </h4>
+<h4> @Model.product.TracksTotal </h4>
+<h4> @Model.product.Sides </h4>
+<h4> @Model.product.ReleaseDate </h4>
+<h4> @Model.product.Label </h4>
+<h4> @Model.product.Genre </h4>
+
+<a asp-page="/Cart" asp-route-id=@Model.product.ProductID> Add to Cart </a>

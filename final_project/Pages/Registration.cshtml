@@ -1,0 +1,51 @@
+﻿@page
+@model final_project.Pages.RegistrationModel
+@{
+    ViewData["Title"] = "Registration";
+}
+
+<body>
+
+    <h3> Register here: </h3>
+
+    <form method="post">
+
+        <h4> Username: </h4>
+        <input type="text" asp-for=@Model.User.Username />
+
+        <h4> Password: </h4>
+        <input type="password" asp-for=@Model.User.Password />
+
+        <h4> Email: </h4>
+        <input type="email" asp-for=@Model.User.Email />
+
+        <h4> First Name: </h4>
+        <input type="text" asp-for=@Model.User.FirstName />
+
+        <h4> Last Name: </h4>
+        <input type="text" asp-for=@Model.User.LastName />
+
+        <h4> Address: </h4>
+        <input type="text" asp-for=@Model.User.Address />
+
+        <h4> Contact Number: </h4>
+        <input type="text" asp-for=@Model.User.ContactNumber />
+
+        <h4> Birthdate: </h4>
+        <input type="date" asp-for=@Model.User.Birthdate />
+
+        <h4> Role: </h4>
+        <select asp-for=@Model.User.Role >
+            <option value="customer"> Customer </option>
+            <option value="admin"> Admin </option>
+        </select>
+
+        @{
+            Model.User.DateJoined = DateTime.Now;
+        }
+
+        <br /><br />
+        <input type="submit" value="Sign up" />
+
+    </form>
+</body>

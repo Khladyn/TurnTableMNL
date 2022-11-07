@@ -1,0 +1,71 @@
+﻿@page
+@model final_project.Pages.AddProductModel
+@{
+    ViewData["Title"] = "Add Product";
+}
+
+<body>
+
+    <h3> New Product: </h3>
+
+    <form method="post" enctype="multipart/form-data">
+
+        <h4> Type: </h4>
+        <select asp-for=@Model.NewProduct.Type>
+            <option value="vinyl"> Vinyl </option>
+            <option value="cassette"> Cassette </option>
+            <option value="cd"> CD </option>
+        </select>
+
+        <h4> Artist: </h4>
+        <input type="text" asp-for=@Model.NewProduct.Artist required/>
+
+        <h4> Album: </h4>
+        <input type="text" asp-for=@Model.NewProduct.Album required/>
+
+        <h4> Cover Art: </h4>
+        <input type="file" name="fileupload" accept=".png, .jpg, .jpeg" />
+
+        <h4> Format: </h4>
+        <select asp-for=@Model.NewProduct.Format>
+            <option value="LP"> Long Play (LP) </option>
+            <option value="EP"> Extended Play (EP) </option>
+        </select>
+
+        <h4> Price: </h4>
+        <input type="number" step=".01" asp-for=@Model.NewProduct.Price required />
+
+        <h4> Description: </h4>
+        <input type="textarea" asp-for=@Model.NewProduct.Description />
+
+        <h4> Tracks: </h4>
+        <input type="textarea" asp-for=@Model.NewProduct.Tracks required />
+
+        <h4> Tracks Total: </h4>
+        <input type="number" min="1" value="1" asp-for=@Model.NewProduct.TracksTotal required />
+
+        <h4> Sides: </h4>
+        <input type="number" min="1" max="2" value="1" asp-for=@Model.NewProduct.Sides required />
+
+        <h4> Release Date: </h4>
+        <input type="date" asp-for=@Model.NewProduct.ReleaseDate />
+
+        <h4> Label: </h4>
+        <input type="text" asp-for=@Model.NewProduct.Label required />
+
+        <h4> Genre: </h4>
+        <select asp-for=@Model.NewProduct.Genre>
+            <option value="rock"> Rock </option>
+            <option value="jazz"> Jazz </option>
+            <option value="country"> Country </option>
+        </select>
+
+        @{
+            Model.NewProduct.DateAdded = DateTime.Now;
+        }
+
+        <br /><br />
+        <input type="submit" value="Add Product" />
+
+    </form>
+</body>
