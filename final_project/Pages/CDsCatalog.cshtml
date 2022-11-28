@@ -11,7 +11,6 @@
         <th> Album </th>
         <th> Artist </th>
         <th> Type </th>
-        <th> Action </th>
         </thead>
         <tbody>
             @foreach (var cd in Model.CDs)
@@ -19,16 +18,24 @@
                 if (cd.Type == "cd")
                 {
                     <tr>
-                        <td><img src=@cd.CoverArt alt="cover art" width="150" /></td>
+                        <td>
+                            <a asp-page="/ViewProduct" asp-route-id=@cd.ProductID>
+                            <img src=@cd.CoverArt alt="cover art" width="150" />
+                            </a>
+                        </td>
                         <td>@cd.Price</td>
                         <td>@cd.Album</td>
                         <td>@cd.Artist</td>
                         <td>@cd.Type</td>
-                        <td>
-                            <a asp-page="/ViewProduct" asp-route-id=@cd.ProductID> View </a>
-                            <a asp-page-handler="Edit"> Edit </a>
-                            <a asp-page="/VinylsCatalog" asp-page-handler="Delete" asp-route-id=@cd.ProductID> Delete </a>
-                        </td>
+                        @if (User.HasClaim("Admin", "true"))
+                        {
+                            <td>
+                                <a asp-page-handler="Edit"> Edit </a>
+                                <a asp-page="/VinylsCatalog" asp-page-handler="Delete" asp-route-id=@cd.ProductID> Delete </a>
+                            </td>
+
+                        }
+
                     </tr>
                 }
 

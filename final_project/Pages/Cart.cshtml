@@ -11,11 +11,25 @@
     <h4> @Model.product.Type </h4>
     <h4> @Model.product.Price </h4>
     <h4> Quantity: </h4>
-    <input type="number" id="quantity" value="1"/>
-    <button onclick="return document.getElementById('quantity').value++"> + </button>
+    <input type="number" id="quantity" value="1" min="0"/>
+@*    <button onclick="return document.getElementById('quantity').value++"> + </button>*@
     <h4> Total: </h4>
-    <h4> @Model.product.Price </h4>
+    <h4 id="total"> @Model.product.Price </h4>
+
+<script>
+        let num = document.querySelector('#quantity');
+
+        num.addEventListener('input', function() {
+            let val = num.valueAsNumber;
+            let sum = val * @Model.product.Price;
+            document.getElementById("total").innerHTML = sum.toFixed(2);
+        });
+ </script>
 </form>
 
-
-<a asp-page="/Checkout" asp-route-id=@Model.product.ProductID> Checkout </a>
+<a asp-page="/Checkout" asp-route-id=@Model.product.ProductID>
+    <button class="btn btn-primary">
+        Checkout
+    </button>
+</a>
+<button onclick="history.back()" class="btn btn-secondary"> Go back </button>

@@ -12,7 +12,6 @@
         <th> Album </th>
         <th> Artist </th>
         <th> Type </th>
-        <th> Action </th>
         </thead>
         <tbody>
             @foreach (var cassette in Model.Cassettes)
@@ -20,16 +19,24 @@
                 if (cassette.Type == "cassette")
                 {
                     <tr>
-                        <td><img src=@cassette.CoverArt alt="cover art" width="150" /></td>
+                        <td>
+                            <a asp-page="/ViewProduct" asp-route-id=@cassette.ProductID>
+                                <img src=@cassette.CoverArt alt="cover art" width="150" />
+                            </a>
+                        </td>
                         <td>@cassette.Price</td>
                         <td>@cassette.Album</td>
                         <td>@cassette.Artist</td>
                         <td>@cassette.Type</td>
-                        <td>
-                            <a asp-page="/ViewProduct" asp-route-id=@cassette.ProductID> View </a>
-                            <a asp-page-handler="Edit"> Edit </a>
-                            <a asp-page="/VinylsCatalog" asp-page-handler="Delete" asp-route-id=@cassette.ProductID> Delete </a>
-                        </td>
+
+                        @if (User.HasClaim("Admin", "true"))
+                        {
+                            <td>
+                                <a asp-page-handler="Edit"> Edit </a>
+                                <a asp-page="/VinylsCatalog" asp-page-handler="Delete" asp-route-id=@cassette.ProductID> Delete </a>
+                            </td>
+                        }
+
                     </tr>
                 }
 
