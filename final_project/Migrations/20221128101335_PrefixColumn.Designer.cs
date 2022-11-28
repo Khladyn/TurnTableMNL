@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using final_project.Data;
 
@@ -11,9 +12,10 @@ using final_project.Data;
 namespace final_project.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20221128101335_PrefixColumn")]
+    partial class PrefixColumn
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -129,10 +131,6 @@ namespace final_project.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Prefix")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Repassword")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

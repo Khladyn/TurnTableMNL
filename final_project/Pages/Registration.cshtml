@@ -4,48 +4,100 @@
     ViewData["Title"] = "Registration";
 }
 
-<body>
+<body class="h-100">
 
-    <h3> Register here: </h3>
+    <h3 class="text-center text-black mt-5 p-3"> Register here </h3>
+
+    <div class="container border p-4 col-4 d-flex flex-column mb-5">
 
     <form method="post">
 
-        <h4> Username: </h4>
-        <input type="text" asp-for=@Model.User.Username />
+        <div class="form-group-row d-flex flex-column">
+                <label asp-for=@Model.User.Username class="form-label my-2"></label>
+                <input asp-for=@Model.User.Username class="form-control" required />
+            <span asp-validation-for=@Model.User.Username class="text-danger"></span>
+        </div>
 
-        <h4> Password: </h4>
-        <input type="password" asp-for=@Model.User.Password />
+            <div class="form-group-row d-flex flex-column">
+                <label asp-for=@Model.User.Password class="form-label my-2"></label>
+                <input asp-for=@Model.User.Password class="form-control" required />
+                <span asp-validation-for=@Model.User.Password class="text-danger"></span>
+            </div>
 
-        <h4> Email: </h4>
-        <input type="email" asp-for=@Model.User.Email />
+            <div class="form-group-row d-flex flex-column">
+                <label asp-for=@Model.User.Repassword class="form-label my-2"></label>
+                <input asp-for=@Model.User.Repassword class="form-control" required />
+                <span asp-validation-for=@Model.User.Repassword class="text-danger"></span>
+            </div>
 
-        <h4> First Name: </h4>
-        <input type="text" asp-for=@Model.User.FirstName />
+            <div class="form-group-row d-flex flex-column">
+                <label asp-for=@Model.User.Email class="form-label my-2"></label>
+                <input asp-for=@Model.User.Email class="form-control" required />
+                <span asp-validation-for=@Model.User.Email class="text-danger"></span>
+            </div>
 
-        <h4> Last Name: </h4>
-        <input type="text" asp-for=@Model.User.LastName />
+            <div class="form-group-row d-flex flex-column">
+                <label asp-for=@Model.User.Prefix class="form-label my-2"></label>
+                <select asp-for=@Model.User.Prefix class="form-select">
+                    <option value="Mr."> Mr. </option>
+                    <option value="Ms."> Ms. </option>
+                    <option value="Mrs."> Mrs. </option>
+                </select>
+                <span asp-validation-for=@Model.User.Prefix class="text-danger"></span>
+            </div>
 
-        <h4> Address: </h4>
-        <input type="text" asp-for=@Model.User.Address />
+            <div class="form-group-row d-flex flex-column">
+                <label asp-for=@Model.User.FirstName class="form-label my-2"></label>
+                <input asp-for=@Model.User.FirstName class="form-control" required />
+                <span asp-validation-for=@Model.User.FirstName class="text-danger"></span>
+            </div>
 
-        <h4> Contact Number: </h4>
-        <input type="text" asp-for=@Model.User.ContactNumber />
+            <div class="form-group-row d-flex flex-column">
+                <label asp-for=@Model.User.LastName class="form-label my-2"></label>
+                <input asp-for=@Model.User.LastName class="form-control" required />
+                <span asp-validation-for=@Model.User.LastName class="text-danger"></span>
+            </div>
 
-        <h4> Birthdate: </h4>
-        <input type="date" asp-for=@Model.User.Birthdate />
+            <div class="form-group-row d-flex flex-column">
+                <label asp-for=@Model.User.Address class="form-label my-2"></label>
+                <input asp-for=@Model.User.Address class="form-control" required />
+                <span asp-validation-for=@Model.User.Address class="text-danger"></span>
+            </div>
 
-        <h4> Role: </h4>
-        <select asp-for=@Model.User.Role >
-            <option value="customer"> Customer </option>
-            <option value="admin"> Admin </option>
-        </select>
+            <div class="form-group-row d-flex flex-column">
+                <label asp-for=@Model.User.ContactNumber class="form-label my-2"></label>
+                <input asp-for=@Model.User.ContactNumber class="form-control" required />
+                <span asp-validation-for=@Model.User.ContactNumber class="text-danger"></span>
+            </div>
+
+            <div class="form-group-row d-flex flex-column">
+                <label asp-for=@Model.User.Birthdate class="form-label my-2"></label>
+                <input asp-for=@Model.User.Birthdate class="form-control" required />
+                <span asp-validation-for=@Model.User.Birthdate class="text-danger"></span>
+            </div>
+
+            <div class="form-group-row d-flex flex-column">
+                <label asp-for=@Model.User.Role class="form-label my-2"></label>
+                <select asp-for=@Model.User.Role class="form-select">
+                    <option value="customer"> Customer </option>
+                    <option value="admin"> Admin </option>
+                </select>
+                <span asp-validation-for=@Model.User.Role class="text-danger"></span>
+            </div>
 
         @{
             Model.User.DateJoined = DateTime.Now;
         }
 
-        <br /><br />
-        <input type="submit" value="Sign up" />
+        <div class="mt-4 text-center">
+            <input type="submit" value="Sign up" class="btn btn-primary w-100" />
+        </div>
+
+        <div class="mt-2 p-2 text-center">
+            <a asp-page="/Login"> Login </a>
+        </div>
 
     </form>
+
+    </div>
 </body>

@@ -24,10 +24,13 @@ namespace final_project.Pages
 
         public IActionResult OnPost()
         {
+            if (!ModelState.IsValid) return Page();
+
             User.Password = BCrypt.Net.BCrypt.HashPassword(User.Password);
+            User.Repassword = BCrypt.Net.BCrypt.HashPassword(User.Repassword);
             _context.Users.Add(User);
             _context.SaveChanges();
-            return RedirectToPage("Registration");
+            return RedirectToPage("Login");
         }
     }
 }

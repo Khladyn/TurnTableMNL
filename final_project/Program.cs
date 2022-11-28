@@ -1,4 +1,5 @@
 using final_project.Data;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,6 +9,19 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<DatabaseContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+});
+
+
+builder.Services.AddAuthentication("MyCookieAuth").AddCookie("MyCookieAuth", options =>
+{
+    options.Cookie.Name = "MyCookieAuth";
+    options.LoginPath = "/Login";
+});
+
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("AdminOnly",
+        policy => policy.RequireClaim("Admin"));
 });
 
 builder.Services.AddRazorPages();
@@ -26,7 +40,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapRazorPages();

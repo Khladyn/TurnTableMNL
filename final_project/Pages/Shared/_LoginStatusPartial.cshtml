@@ -1,0 +1,10 @@
+﻿@if (User.HasClaim("Admin", "true"))
+{
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="" asp-page="/AddProduct"> Add Product </a>
+    </li>
+} else {
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="" asp-page="/Cart"> Cart </a>
+    </li>
+}
