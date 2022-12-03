@@ -18,7 +18,11 @@
 <h4> @Model.product.Label </h4>
 <h4> @Model.product.Genre </h4>
 
-<a asp-page="/Cart" asp-route-id=@Model.product.ProductID>
+
+<a asp-page="/Cart"
+   asp-page-handler="Add"
+   asp-route-id=@Model.product.ProductID>
     <button class="btn btn-primary"> Add to Cart </button>
 </a>
+
 <button onclick="history.back()" class="btn btn-secondary"> Go back </button>

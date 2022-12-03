@@ -32,7 +32,7 @@
                             <a asp-page="/Cart"
                                asp-page-handler="Add"
                                asp-route-id=@cd.ProductID>
-                                    Add to Cart
+                               <button class="btn btn-primary"> Add to Cart </button>
                             </a>
                         </td>
                         @if (User.HasClaim("Admin", "true"))

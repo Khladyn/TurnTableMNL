@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace final_project.Models
 {
@@ -9,6 +10,8 @@ namespace final_project.Models
         
         [Key]
         public int OrderID { get; set; }
+
+        public int ProductID { get; set; }
 
         public string CoverArt { get; set; }
 
@@ -28,13 +31,13 @@ namespace final_project.Models
 
         public DateTime DateAdded { get; set; }
 
-        public int UserID { get; set; }
+        public string Username { get; set; }
 
         public OrderModel() {}
 
-        public OrderModel(ProductModel product)
+        public OrderModel(ProductModel product, UserModel user)
         {
-            OrderID = product.ProductID;
+            ProductID = product.ProductID;
             CoverArt = product.CoverArt;
             Album = product.Album;
             Artist = product.Artist;
@@ -42,6 +45,7 @@ namespace final_project.Models
             Price = product.Price;
             Quantity = 1;
             DateAdded = DateTime.Now;
+            Username = user.Username;
         }
 
     }

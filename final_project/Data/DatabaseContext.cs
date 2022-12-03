@@ -8,6 +8,7 @@ namespace final_project.Data
     {
         public DbSet<ProductModel> Products { get; set; }
         public DbSet<UserModel> Users { get; set; }
+        public DbSet<OrderModel> Orders { get; set; }
 
         public DatabaseContext(DbContextOptions<DatabaseContext> options)
             : base(options)

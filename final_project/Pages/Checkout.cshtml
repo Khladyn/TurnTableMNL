@@ -4,12 +4,13 @@
     ViewData["Title"] = "Checkout";
 }
 
-
-@*<a asp-page="VinylsCatalog" onclick="return confirm('You're about to pay {price}.')"> Payment </a>
-*@<a asp-page="Cart" asp-page-handler="Clear" onclick="return confirm('Proceed with payment?')">
-    <button class="btn btn-primary">
-        Payment
-    </button>
+<a
+    asp-page="Cart"
+    asp-page-handler="Pay"
+    onclick="return confirm('Proceed with payment?')" >
+        <button class="btn btn-primary">
+            Payment
+        </button>
 </a>
 
 <button onclick="history.back()" class="btn btn-secondary"> Go back </button>

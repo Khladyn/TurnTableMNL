@@ -1,16 +1,23 @@
 ﻿@page
-@model final_project.Pages.CartModel
+@model final_project.Pages.OrdersList
 @{
-    ViewData["Title"] = "My Cart";
+    if(User.HasClaim("Admin", "true"))
+    {
+        ViewData["Title"] = "All Orders";
+
+    } else {
+
+        ViewData["Title"] = "My Orders";
+    }
+    
 }
 
-@if(Model.cart == null || Model.cart.Count == 0)
+@if (Model.orders == null || Model.orders.Count == 0)
 {
     <div class="my-5">
         <div class="my-4">
-            <h6 class="text-center"> @Model.emptyCart </h6>
+            <h6 class="text-center"> @Model.emptyOrder </h6>
         </div>
-        
 
         <div class="d-flex flex-column align-items-center gap-4">
 
@@ -35,7 +42,9 @@
         </div>
     </div>
 
-} else {
+}
+else
+{
 
     <table class="table table-striped">
 
@@ -53,14 +62,14 @@
         </thead>
         <tbody>
 
-            @foreach (var cartItem in Model.cart)
+            @foreach (var orderItem in Model.orders)
             {
 
                 <tr>
                     <td class="text-center align-middle">
-                        <a asp-page="/Cart"
-                           asp-page-handler="Remove"
-                           asp-route-id=@cartItem.ProductID>
+                        <a asp-page="/OrdersList"
+                           asp-page-handler="Delete"
+                           asp-route-id=@orderItem.OrderID>
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
                                 <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z" />
                             </svg>
@@ -68,35 +77,33 @@
                     </td>
 
                     <td class="text-center align-middle">
-                        <img src=@cartItem.CoverArt alt="cover art" width="100" />
+                        <img src=@orderItem.CoverArt alt="cover art" width="100" />
                     </td>
                     <td class="text-center align-middle">
                         <h6>
-                            <a
-                                asp-page="/ViewProduct"
-                                asp-route-id=@cartItem.ProductID>
-                                    @cartItem.Album
+                            <a asp-page="/ViewProduct"
+                       asp-route-id=@orderItem.ProductID>
+                                @orderItem.Album
                             </a>
                         </h6>
                     </td>
-                    <td class="text-center align-middle"> @cartItem.Artist </td>
-                    <td class="text-center align-middle"> @cartItem.Type </td>
-                    <td class="text-center align-middle"> @cartItem.Price.ToString("#,##0.00") </td>
+                    <td class="text-center align-middle"> @orderItem.Artist </td>
+                    <td class="text-center align-middle"> @orderItem.Type </td>
+                    <td class="text-center align-middle"> @orderItem.Price.ToString("#,##0.00") </td>
                     <td class="text-center align-middle">
-                        <input
-                            type="number"
-                            name="quantity"
-                            value=@cartItem.Quantity
-                            min="0"
-                            class="col-4"
-                        />
+                        <input type="number"
+                           name="quantity"
+                           value=@orderItem.Quantity
+                           min="0"
+                           class="col-4"
+                           disabled />
                     </td>
                     <td class="text-center align-middle">
-                        <h6 id="subtotal"> @cartItem.Subtotal.ToString("#,##0.00") </h6>
+                        <h6 id="subtotal"> @orderItem.Subtotal.ToString("#,##0.00") </h6>
                     </td>
                 </tr>
 
-                Model.total += cartItem.Subtotal;
+                Model.total += orderItem.Subtotal;
 
             }
             <tr class="bg-dark">
@@ -113,38 +120,7 @@
         </tbody>
     </table>
 
-
-    <script>
-
-        var quantity = document.getElementsByTagName('input');
-
-        for (var i = 0; i < quantity.length; i++) {
-
-            quantity[i].addEventListener('input', function(e)
-            {
-                var parent = e.target.parentNode;
-                var price = parent.previousElementSibling.innerHTML;
-                var subtotal = parent.nextElementSibling.childNodes[1];
-                subtotal.innerHTML = (e.target.value * price).toFixed(2);
-
-            });
-        }
-
-    </script>
-
-    <a asp-page="/Checkout">
-        <button class="btn btn-primary">
-            Checkout
-        </button>
-    </a>
     <button onclick="history.back()" class="btn btn-secondary"> Go back </button>
 
 
 }
-
-
-
-
-
-    
-

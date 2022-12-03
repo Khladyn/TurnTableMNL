@@ -16,11 +16,12 @@ namespace final_project.Pages
 
         private readonly DatabaseContext _context;
 
+        [BindProperty]
         public List<OrderModel> cart { get; set; }
 
-        public string EmptyCart { get; set; } = "Your cart is empty.";
+        public double total { get; set; }
 
-        //private readonly UserManager<IdentityUser> _userManager;
+        public string emptyCart { get; set; } = "Your cart is empty.";
 
         public CartModel(DatabaseContext context)
         {
@@ -32,16 +33,26 @@ namespace final_project.Pages
             cart = HttpContext.Session.GetJson<List<OrderModel>>("Cart") ?? new List<OrderModel>();
         }
 
-        public void OnGetClear()
+        public async Task<IActionResult> OnGetPay()
         {
+            cart = HttpContext.Session.GetJson<List<OrderModel>>("Cart");
+
             HttpContext.Session.Remove("Cart");
+
+            foreach (var order in cart)
+            {
+                _context.Orders.Add(order);
+                _context.SaveChanges();
+            }
+
+            return RedirectToAction("OnGet");
         }
 
         public async Task<IActionResult> OnGetRemove(int id)
         {
             cart = HttpContext.Session.GetJson<List<OrderModel>>("Cart");
 
-            cart.RemoveAll(c => c.OrderID == id);
+            cart.RemoveAll(c => c.ProductID == id);
 
             HttpContext.Session.SetJson("Cart", cart);
 
@@ -52,15 +63,20 @@ namespace final_project.Pages
         public async Task<IActionResult> OnGetAdd(int id)
         {
             var product = await _context.Products.FindAsync(id);
-            var user = await _context.Users.FindAsync(User.FindFirstValue(ClaimTypes.NameIdentifier));
-                
+
+            var username = HttpContext.User.FindFirstValue(ClaimTypes.Name);
+
+            var user = _context.Users
+                .Where(u => u.Username == username)
+                .FirstOrDefault();
+
             cart = HttpContext.Session.GetJson<List<OrderModel>>("Cart") ?? new List<OrderModel>();
 
-            OrderModel order = cart.Where(c => c.OrderID == id).FirstOrDefault();
+            OrderModel order = cart.Where(c => c.ProductID == id).FirstOrDefault();
 
             if (order == null)
             {
-                cart.Add(new OrderModel(product));
+                cart.Add(new OrderModel(product, user));
             }
             else
             {
