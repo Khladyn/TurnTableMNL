@@ -11,6 +11,7 @@
         <th> Album </th>
         <th> Artist </th>
         <th> Type </th>
+        <th> Action </th>
         </thead>
         <tbody>
             @foreach (var cd in Model.CDs)
@@ -27,13 +28,27 @@
                         <td>@cd.Album</td>
                         <td>@cd.Artist</td>
                         <td>@cd.Type</td>
+                        <td>
+                            <a asp-page="/Cart"
+                               asp-page-handler="Add"
+                               asp-route-id=@cd.ProductID>
+                                    Add to Cart
+                            </a>
+                        </td>
                         @if (User.HasClaim("Admin", "true"))
                         {
                             <td>
-                                <a asp-page-handler="Edit"> Edit </a>
-                                <a asp-page="/VinylsCatalog" asp-page-handler="Delete" asp-route-id=@cd.ProductID> Delete </a>
+                                <a
+                                    asp-page-handler="Edit">
+                                        Edit
+                                </a>
+                                <a
+                                    asp-page="/VinylsCatalog"
+                                    asp-page-handler="Delete"
+                                    asp-route-id=@cd.ProductID>
+                                        Delete
+                                </a>
                             </td>
-
                         }
 
                     </tr>

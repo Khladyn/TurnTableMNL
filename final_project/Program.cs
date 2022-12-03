@@ -24,9 +24,20 @@ builder.Services.AddAuthorization(options =>
         policy => policy.RequireClaim("Admin"));
 });
 
+
+builder.Services.AddDistributedMemoryCache();
+
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(2);
+    options.Cookie.IsEssential = true;
+});
+
 builder.Services.AddRazorPages();
 
 var app = builder.Build();
+
+app.UseSession();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

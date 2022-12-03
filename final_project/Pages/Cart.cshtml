@@ -4,32 +4,125 @@
     ViewData["Title"] = "My Cart";
 }
 
-<form>
-    <img src=@Model.product.CoverArt alt="cover art" width="350" />
-    <h4> @Model.product.Artist </h4>
-    <h4> @Model.product.Album </h4>
-    <h4> @Model.product.Type </h4>
-    <h4> @Model.product.Price </h4>
-    <h4> Quantity: </h4>
-    <input type="number" id="quantity" value="1" min="0"/>
-@*    <button onclick="return document.getElementById('quantity').value++"> + </button>*@
-    <h4> Total: </h4>
-    <h4 id="total"> @Model.product.Price </h4>
+@if(Model.cart == null || Model.cart.Count == 0)
+{
+    <div class="my-5">
+        <div class="my-4">
+            <h6 class="text-center"> @Model.EmptyCart </h6>
+        </div>
+        
 
-<script>
-        let num = document.querySelector('#quantity');
+        <div class="d-flex flex-column align-items-center gap-4">
 
-        num.addEventListener('input', function() {
-            let val = num.valueAsNumber;
-            let sum = val * @Model.product.Price;
-            document.getElementById("total").innerHTML = sum.toFixed(2);
-        });
- </script>
-</form>
+            <a asp-page="/VinylsCatalog">
+                <button class="btn btn-outline-primary">
+                    Browse vinyls >>
+                </button>
+            </a>
 
-<a asp-page="/Checkout" asp-route-id=@Model.product.ProductID>
-    <button class="btn btn-primary">
-        Checkout
-    </button>
-</a>
-<button onclick="history.back()" class="btn btn-secondary"> Go back </button>
+            <a asp-page="/CDsCatalog">
+                <button class="btn btn-outline-primary">
+                    Browse CDs >>
+                </button>
+            </a>
+
+            <a asp-page="/CassettesCatalog">
+                <button class="btn btn-outline-primary">
+                    Browse cassettes >>
+                </button>
+            </a>
+
+        </div>
+    </div>
+
+} else {
+
+    <table class="table table-striped">
+
+        <thead>
+            <tr>
+                <th scope="col" class="text-center" style="width:4%"></th>
+                <th scope="col" class="text-center col-1"> Cover Art </th>
+                <th scope="col" class="text-center col-1"> Product Item </th>
+                <th scope="col" class="text-center col-1"> Artist Name </th>
+                <th scope="col" class="text-center col-1"> Product Type </th>
+                <th scope="col" class="text-center col-1"> Price </th>
+                <th scope="col" class="text-center col-1"> Quantity </th>
+                <th scope="col" class="text-center col-1"> Subtotal </th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var cartItem in Model.cart)
+            {
+
+                <tr>
+                    <td class="text-center align-middle">
+                        <a asp-page="/Cart"
+                           asp-page-handler="Remove"
+                           asp-route-id=@cartItem.OrderID>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                                <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z" />
+                            </svg>
+                        </a>
+                    </td>
+
+                    <td class="text-center align-middle">
+                        <img src=@cartItem.CoverArt alt="cover art" width="100" />
+                    </td>
+                    <td class="text-center align-middle">
+                        <h6>
+                            <a
+                                asp-page="/ViewProduct"
+                                asp-route-id=@cartItem.OrderID>
+                                    @cartItem.Album
+                            </a>
+                        </h6>
+                    </td>
+                    <td class="text-center align-middle"> @cartItem.Artist </td>
+                    <td class="text-center align-middle"> @cartItem.Type </td>
+                    <td class="text-center align-middle"> @cartItem.Price.ToString("0.00") </td>
+                    <td class="text-center align-middle">
+                        <input
+                            type="number"
+                            id="quantity"
+                            value=@cartItem.Quantity
+                            min="0"
+                            class="col-4" />
+                    </td>
+                    <td class="text-center align-middle">
+                        <h6 id="subtotal"> @cartItem.Subtotal.ToString("0.00") </h6>
+                    </td>
+                </tr>
+
+                <script>
+                    let num = document.querySelector('#quantity');
+
+                    num.addEventListener('input', function () {
+                        let val = num.valueAsNumber;
+                        let sum = val * @cartItem.Price;
+                        document.getElementById("subtotal").innerHTML = sum.toFixed(2);
+                    });
+                </script>
+
+            }
+
+        </tbody>
+    </table>
+
+    <a asp-page="/Checkout">
+        <button class="btn btn-primary">
+            Checkout
+        </button>
+    </a>
+    <button onclick="history.back()" class="btn btn-secondary"> Go back </button>
+
+
+}
+
+
+
+
+
+    
+

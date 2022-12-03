@@ -6,7 +6,7 @@
 
 
 @*<a asp-page="VinylsCatalog" onclick="return confirm('You're about to pay {price}.')"> Payment </a>
-*@<a asp-page="VinylsCatalog" onclick="return confirm('Proceed with payment?')">
+*@<a asp-page="Cart" asp-page-handler="Clear" onclick="return confirm('Proceed with payment?')">
     <button class="btn btn-primary">
         Payment
     </button>

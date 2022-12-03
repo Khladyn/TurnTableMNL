@@ -12,6 +12,7 @@
             <th> Album </th>
             <th> Artist </th>
             <th> Type </th>
+            <th> Action </th>
         </thead>
         <tbody>
             @foreach (var vinyl in Model.Vinyls)
@@ -21,19 +22,37 @@
                     <tr>
                         <td>
                             <a asp-page="/ViewProduct" asp-route-id=@vinyl.ProductID>
-                                <img src=@vinyl.CoverArt alt="cover art" width="150" />
+                                <img
+                                    src=@vinyl.CoverArt
+                                    alt="cover art"
+                                    width="150" />
                             </a>
                         </td>
                         <td>@vinyl.Price</td>
                         <td>@vinyl.Album</td>
                         <td>@vinyl.Artist</td>
                         <td>@vinyl.Type</td>
+                        <td>
+                            <a asp-page="/Cart"
+                               asp-page-handler="Add"
+                               asp-route-id=@vinyl.ProductID>
+                                    Add to Cart
+                            </a>
+                        </td>
 
                         @if (User.HasClaim("Admin", "true"))
                         {
                             <td>
-                                <a asp-page-handler="Edit"> Edit </a>
-                                <a asp-page="/VinylsCatalog" asp-page-handler="Delete" asp-route-id=@vinyl.ProductID> Delete </a>
+                                <a
+                                    asp-page-handler="Edit">
+                                        Edit
+                                </a>
+                                <a
+                                    asp-page="/VinylsCatalog"
+                                    asp-page-handler="Delete"
+                                    asp-route-id=@vinyl.ProductID>
+                                        Delete
+                                </a>
                             </td>
                         }
                     </tr>
