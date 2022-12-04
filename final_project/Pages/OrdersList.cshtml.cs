@@ -18,6 +18,8 @@ namespace final_project.Pages
 
         public List<OrderModel> orders;
 
+        public int itemCount { get; set; }
+
         public string emptyOrder { get; set; } = "No orders at the moment.";
 
         public double total { get; set; }
@@ -26,21 +28,35 @@ namespace final_project.Pages
         {
             string name = HttpContext.User.Identity.Name;
 
-            if ( name == "admin")
-            {
-                orders = _context.Orders.ToList();
-            } else
-            {
-                orders = _context.Orders
-                    .Where(o => o.Username == name).ToList();
-            }
-            
+                if (name == "admin")
+                {
+                    orders = _context.Orders.ToList();
+                    itemCount = _context.Orders.Count();
+                }
+                else
+                {
+                    orders = _context.Orders
+                        .Where(o => o.Username == name).ToList();
+                    itemCount = _context.Orders
+                        .Where(o => o.Username == name).Count();
+                }
         }
 
         public IActionResult OnGetDelete(int id)
         {
             var order = _context.Orders.Find(id);
             _context.Orders.Remove(order);
+            _context.SaveChanges();
+            return Redirect(Request.Headers["Referer"].ToString());
+
+        }
+
+        public IActionResult OnGetCancel(int id)
+        {
+            var order = _context.Orders.Find(id);
+            order.OrderStatus = "Cancelled";
+            order.Quantity = 0;
+            _context.Orders.Update(order);
             _context.SaveChanges();
             return Redirect(Request.Headers["Referer"].ToString());
 

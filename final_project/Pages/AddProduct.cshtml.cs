@@ -12,6 +12,7 @@ namespace final_project.Pages
 
         [BindProperty]
         public ProductModel NewProduct { get; set; }
+        public ProductModel OldProduct { get; set; }
 
         private readonly DatabaseContext _context;
         private IHostEnvironment _environment;
@@ -29,8 +30,17 @@ namespace final_project.Pages
             NewProduct = new ProductModel();
         }
 
+        public void OnGetEdit(int id)
+        {
+            NewProduct = new ProductModel();
+            OldProduct = _context.Products.Find(id);
+            NewProduct = OldProduct;
+        }
+
         public async Task OnPostAsync()
         {
+            
+            OldProduct = _context.Products.FirstOrDefault(p => p.ProductID == NewProduct.ProductID);
 
             fileupload = Request.Form.Files[0];
 
@@ -42,7 +52,16 @@ namespace final_project.Pages
                 await fileupload.CopyToAsync(fileStream);
             }
 
-            _context.Products.Add(NewProduct);
+            //if (OldProduct == null)
+            //{
+            //    _context.Products.Add(NewProduct);
+            //}
+            //else
+            //{
+                OldProduct = NewProduct;
+                _context.Products.Update(OldProduct);
+            //}
+            
             _context.SaveChanges();
         }
 

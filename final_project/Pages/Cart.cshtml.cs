@@ -33,21 +33,6 @@ namespace final_project.Pages
             cart = HttpContext.Session.GetJson<List<OrderModel>>("Cart") ?? new List<OrderModel>();
         }
 
-        public async Task<IActionResult> OnGetPay()
-        {
-            cart = HttpContext.Session.GetJson<List<OrderModel>>("Cart");
-
-            HttpContext.Session.Remove("Cart");
-
-            foreach (var order in cart)
-            {
-                _context.Orders.Add(order);
-                _context.SaveChanges();
-            }
-
-            return RedirectToAction("OnGet");
-        }
-
         public async Task<IActionResult> OnGetRemove(int id)
         {
             cart = HttpContext.Session.GetJson<List<OrderModel>>("Cart");

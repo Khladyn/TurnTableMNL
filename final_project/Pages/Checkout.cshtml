@@ -4,13 +4,60 @@
     ViewData["Title"] = "Checkout";
 }
 
-<a
-    asp-page="Cart"
-    asp-page-handler="Pay"
-    onclick="return confirm('Proceed with payment?')" >
-        <button class="btn btn-primary">
-            Payment
-        </button>
-</a>
+<form method="post">
+    <div class="form-group-row d-flex flex-column">
+        <label asp-for=@Model.User.Prefix class="form-label my-2"></label>
+        <select asp-for=@Model.User.Prefix class="form-select" disabled>
+            <option value="Mr."> Mr. </option>
+            <option value="Ms."> Ms. </option>
+            <option value="Mrs."> Mrs. </option>
+        </select>
+        <span asp-validation-for=@Model.User.Prefix class="text-danger"></span>
+    </div>
+
+    <div class="form-group-row d-flex flex-column">
+        <label asp-for=@Model.User.FirstName class="form-label my-2"></label>
+        <input asp-for=@Model.User.FirstName class="form-control" disabled />
+        <span asp-validation-for=@Model.User.FirstName class="text-danger"></span>
+    </div>
+
+    <div class="form-group-row d-flex flex-column">
+        <label asp-for=@Model.User.LastName class="form-label my-2"></label>
+        <input asp-for=@Model.User.LastName class="form-control" disabled />
+        <span asp-validation-for=@Model.User.LastName class="text-danger"></span>
+    </div>
+
+    <div class="form-group-row d-flex flex-column">
+        <label asp-for=@Model.User.Address class="form-label my-2"></label>
+        <input asp-for=@Model.User.Address class="form-control" disabled />
+        <span asp-validation-for=@Model.User.Address class="text-danger"></span>
+    </div>
+
+    <div class="form-group-row d-flex flex-column">
+        <label asp-for=@Model.User.Email class="form-label my-2"></label>
+        <input asp-for=@Model.User.Email class="form-control" disabled />
+        <span asp-validation-for=@Model.User.Email class="text-danger"></span>
+    </div>
+
+    <div class="form-group-row d-flex flex-column">
+        <label asp-for=@Model.User.ContactNumber class="form-label my-2"></label>
+        <input asp-for=@Model.User.ContactNumber class="form-control" disabled />
+        <span asp-validation-for=@Model.User.ContactNumber class="text-danger"></span>
+    </div>
+
+    <div class="form-group-row d-flex flex-column">
+        <label asp-for=@Model.ModeOfPayment class="form-label my-2"></label>
+        <select asp-for=@Model.ModeOfPayment class="form-select">
+            <option value="Online banking"> Online banking </option>
+            <option value="E-wallet"> E-wallet </option>
+            <option value="Cash on delivery"> Cash on delivery </option>
+        </select>
+        <span asp-validation-for=@Model.ModeOfPayment class="text-danger"></span>
+    </div>
+
+    <input type="submit" value="Place order" />
+
+</form>
+<br />
 
 <button onclick="history.back()" class="btn btn-secondary"> Go back </button>

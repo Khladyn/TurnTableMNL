@@ -4,6 +4,8 @@
     ViewData["Title"] = "My Cart";
 }
 
+<h2> @ViewData["Title"] </h2>
+
 @if(Model.cart == null || Model.cart.Count == 0)
 {
     <div class="my-5">
@@ -132,7 +134,8 @@
 
     </script>
 
-    <a asp-page="/Checkout">
+    <a asp-page="/Checkout"
+       asp-route-id=@Model.cart>
         <button class="btn btn-primary">
             Checkout
         </button>

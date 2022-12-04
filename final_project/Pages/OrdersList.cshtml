@@ -1,7 +1,7 @@
 ﻿@page
 @model final_project.Pages.OrdersList
 @{
-    if(User.HasClaim("Admin", "true"))
+    if (User.HasClaim("Admin", "true"))
     {
         ViewData["Title"] = "All Orders";
 
@@ -9,8 +9,9 @@
 
         ViewData["Title"] = "My Orders";
     }
-    
 }
+
+<h2> @ViewData["Title"] (@Model.itemCount) </h2>
 
 @if (Model.orders == null || Model.orders.Count == 0)
 {
@@ -41,7 +42,6 @@
 
         </div>
     </div>
-
 }
 else
 {
@@ -50,11 +50,10 @@ else
 
         <thead>
             <tr>
-                <th scope="col" class="text-center" style="width:4%"></th>
-                <th scope="col" class="text-center col-1"> Cover Art </th>
-                <th scope="col" class="text-center col-1"> Product Item </th>
-                <th scope="col" class="text-center col-1"> Artist Name </th>
-                <th scope="col" class="text-center col-1"> Product Type </th>
+                <th scope="col" class="text-center col-1"> Order Status </th>
+                <th scope="col" class="text-center col-2"> Purchaser Info </th>
+                <th scope="col" class="text-center col-2"> Mode of Payment </th>
+                <th scope="col" class="text-center col-2"> Product Info </th>
                 <th scope="col" class="text-center col-1"> Price </th>
                 <th scope="col" class="text-center col-1"> Quantity </th>
                 <th scope="col" class="text-center col-1"> Subtotal </th>
@@ -66,30 +65,53 @@ else
             {
 
                 <tr>
-                    <td class="text-center align-middle">
+                    <td class="align-middle px-4">
+                        <div> #@orderItem.OrderID </div>
+                        <div class="h6 badge
+                            @(orderItem.OrderStatus == "Cancelled"
+                                ? "alert-danger"
+                                : @orderItem.OrderStatus == "Paid"
+                                ? "alert-success"
+                                : "alert-warning")">
+                                     @orderItem.OrderStatus
+                        </div>
+                        <div>
                         <a asp-page="/OrdersList"
-                           asp-page-handler="Delete"
+                           asp-page-handler="Cancel"
                            asp-route-id=@orderItem.OrderID>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
-                                <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z" />
-                            </svg>
+                           <button class="btn btn-outline-danger
+                            @(orderItem.OrderStatus == "Cancelled"
+                                ? "invisible" : "visible")">
+                               Cancel order
+                           </button>
                         </a>
+                        </div>
                     </td>
 
-                    <td class="text-center align-middle">
-                        <img src=@orderItem.CoverArt alt="cover art" width="100" />
+                    <td class="align-middle px-4">
+                        <div> <b> Username: </b> @orderItem.Username </div>
+                        <div> <b> Full Name: </b> @orderItem.FirstName @orderItem.LastName </div>
+                        <div> <b> Address: </b>  @orderItem.Address </div>
+                        <div> <b> Email: </b>  @orderItem.Email </div>
+                        <div> <b> Contact #: </b>  @orderItem.ContactNumber </div>
+                        
                     </td>
                     <td class="text-center align-middle">
-                        <h6>
+                        <div> @orderItem.ModeOfPayment </div>
+                        <div> @orderItem.DateAdded </div>
+                    </td>
+                    <td class="align-middle px-4">
+                        <div>
+                            <b> Album: </b>
                             <a asp-page="/ViewProduct"
-                       asp-route-id=@orderItem.ProductID>
+                               asp-route-id=@orderItem.ProductID>
                                 @orderItem.Album
                             </a>
-                        </h6>
+                        </div>
+                        <div> <b> Artist: </b> @orderItem.Artist </div>
+                        <b> Type: </b> <div class="badge alert-dark"> @orderItem.Type </div>
                     </td>
-                    <td class="text-center align-middle"> @orderItem.Artist </td>
-                    <td class="text-center align-middle"> @orderItem.Type </td>
-                    <td class="text-center align-middle"> @orderItem.Price.ToString("#,##0.00") </td>
+                    <td class="align-middle px-4" style="text-align: right"> @orderItem.Price.ToString("#,##0.00") </td>
                     <td class="text-center align-middle">
                         <input type="number"
                            name="quantity"
@@ -98,7 +120,7 @@ else
                            class="col-4"
                            disabled />
                     </td>
-                    <td class="text-center align-middle">
+                    <td class="align-middle px-4" style="text-align: right">
                         <h6 id="subtotal"> @orderItem.Subtotal.ToString("#,##0.00") </h6>
                     </td>
                 </tr>
@@ -112,7 +134,6 @@ else
                 <td></td>
                 <td></td>
                 <td></td>
-                <td class="text-center align-middle text-white" id="test"></td>
                 <td class="text-center align-middle text-white"> Total: </td>
                 <td class="text-center align-middle text-white fw-bold" id="total"> PHP @Model.total.ToString("#,##0.00") </td>
             </tr>
