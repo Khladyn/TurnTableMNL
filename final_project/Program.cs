@@ -24,7 +24,6 @@ builder.Services.AddAuthorization(options =>
         policy => policy.RequireClaim("Admin"));
 });
 
-
 builder.Services.AddDistributedMemoryCache();
 
 builder.Services.AddSession(options =>

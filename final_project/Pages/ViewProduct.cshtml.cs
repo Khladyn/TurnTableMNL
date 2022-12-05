@@ -19,9 +19,23 @@ namespace final_project.Pages
         {
             _context = context;
         }
+
         public void OnGet(int id)
         {
             product = _context.Products.Find(id);
+
+            if(product.Type == "vinyl")
+            {
+                TempData["PageRedirect"] = "VinylsCatalog";
+            }
+            else if (product.Type == "cd")
+            {
+                TempData["PageRedirect"] = "CDsCatalog";
+            }
+            else
+            {
+                TempData["PageRedirect"] = "CassettesCatalog";
+            }
         }
     }
 }

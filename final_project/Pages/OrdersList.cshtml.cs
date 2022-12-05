@@ -47,6 +47,7 @@ namespace final_project.Pages
             var order = _context.Orders.Find(id);
             _context.Orders.Remove(order);
             _context.SaveChanges();
+
             return Redirect(Request.Headers["Referer"].ToString());
 
         }
@@ -58,6 +59,7 @@ namespace final_project.Pages
             order.Quantity = 0;
             _context.Orders.Update(order);
             _context.SaveChanges();
+
             return Redirect(Request.Headers["Referer"].ToString());
 
         }

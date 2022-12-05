@@ -74,5 +74,32 @@ namespace final_project.Pages
 
     }
 
+        public async Task<IActionResult> OnGetIncrease(int id)
+        {
+
+            cart = HttpContext.Session.GetJson<List<OrderModel>>("Cart");
+
+            OrderModel order = cart.Where(c => c.ProductID == id).FirstOrDefault();
+
+            order.Quantity++;
+
+            HttpContext.Session.SetJson("Cart", cart);
+
+            return Redirect(Request.Headers["Referer"].ToString());
+        }
+
+        public async Task<IActionResult> OnGetDecrease(int id)
+        {
+
+            cart = HttpContext.Session.GetJson<List<OrderModel>>("Cart");
+
+            OrderModel order = cart.Where(c => c.ProductID == id).FirstOrDefault();
+
+            order.Quantity--;
+
+            HttpContext.Session.SetJson("Cart", cart);
+
+            return Redirect(Request.Headers["Referer"].ToString());
+        }
     }
 }

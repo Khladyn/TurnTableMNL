@@ -40,4 +40,22 @@
         </button>
     </a>
 
+@if (User.HasClaim("Admin", "true"))
+{
+    <td>
+        <a
+            asp-page="/AddProduct"
+            asp-page-handler="Edit"
+            asp-route-id=@Model.product.ProductID>
+                Edit
+        </a>
+        <a
+            asp-page=@TempData["PageRedirect"]
+            asp-page-handler="Delete"
+            asp-route-id=@Model.product.ProductID>
+                Delete
+        </a>
+    </td>
+}
+
 <button onclick="history.back()" class="btn btn-secondary"> Go back </button>

@@ -35,11 +35,8 @@ namespace final_project.Pages
 
         public async Task<IActionResult> OnPostAsync()
         {
-            
 
             cart = HttpContext.Session.GetJson<List<OrderModel>>("Cart") ?? new List<OrderModel>();
-
-            
 
             foreach (var c in cart)
             {
