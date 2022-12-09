@@ -1,7 +1,6 @@
 ﻿@page
 @model final_project.Pages.RegistrationModel
 @{
-    ViewData["Title"] = "Registration";
 }
 
 <body class="h-100">
@@ -12,10 +11,11 @@
 
     <form method="post" autocomplete="off">
 
+
         @* USERNAME *@
         <div class="form-group-row d-flex flex-column">
                 <label asp-for=@Model.User.Username class="form-label my-2"></label>
-                <input asp-for=@Model.User.Username class="form-control" required />
+                <input asp-for=@Model.User.Username class="form-control" />
             <span asp-validation-for=@Model.User.Username class="text-danger"></span>
         </div>
 
@@ -110,7 +110,14 @@
             Already have an account? <a asp-page="/Login">Login here</a>.
         </div>
 
-    </form>
 
+        }
+        else if (!User.Identity.IsAuthenticated)
+        {
+               <div class="mt-2 p-2 text-center">
+                     <a asp-page="/Login"> Login </a>
+               </div>
+
+        } else {}
     </div>
 </body>

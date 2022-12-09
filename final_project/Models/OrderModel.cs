@@ -35,7 +35,6 @@ namespace final_project.Models
         [DataType(DataType.Text)]
         public string OrderStatus { get; set; }
 
-
         public OrderModel() {}
 
         public OrderModel(ProductModel product, UserModel user)

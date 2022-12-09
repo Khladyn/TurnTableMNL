@@ -1,5 +1,6 @@
 using final_project.Data;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.ComponentModel;
@@ -22,6 +23,7 @@ namespace final_project.Pages
             _context = context;
         }
 
+        private SignInManager<IdentityUser> signInManager;
         public void OnGet()
         {
         }
@@ -55,6 +57,7 @@ namespace final_project.Pages
                     new Claim(ClaimTypes.Name, Credential.Username),
                     new Claim("Admin", "true")
                 };
+
                 var identity = new ClaimsIdentity(claims, "MyCookieAuth");
                 ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(identity);
 
@@ -62,7 +65,6 @@ namespace final_project.Pages
 
                 return RedirectToPage("/Index");
             }
-
             return Page();
         }
 

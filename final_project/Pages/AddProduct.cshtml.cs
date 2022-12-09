@@ -13,6 +13,7 @@ namespace final_project.Pages
         [BindProperty]
         public ProductModel NewProduct { get; set; }
         public ProductModel OldProduct { get; set; }
+        public int id { get; set; }
 
         private readonly DatabaseContext _context;
         private IHostEnvironment _environment;
@@ -27,42 +28,73 @@ namespace final_project.Pages
 
         public void OnGet()
         {
+            ViewData["Title"] = "Add Product";
+
             NewProduct = new ProductModel();
         }
-
         public void OnGetEdit(int id)
         {
+            ViewData["Title"] = "Edit Product";
+
             NewProduct = new ProductModel();
             OldProduct = _context.Products.Find(id);
             NewProduct = OldProduct;
         }
-
-        public async Task OnPostAsync()
+        public async Task<IActionResult> OnPostAsync()
         {
-            
-            OldProduct = _context.Products.FirstOrDefault(p => p.ProductID == NewProduct.ProductID);
 
-            fileupload = Request.Form.Files[0];
-
-            NewProduct.CoverArt = @"images\" + Path.GetFileName(fileupload.FileName);
-
-            var file = Path.Combine(_environment.ContentRootPath, "wwwroot\\images", fileupload.FileName);
-            using (var fileStream = new FileStream(file, FileMode.Create))
+            if(fileupload == null)
             {
-                await fileupload.CopyToAsync(fileStream);
+                NewProduct.CoverArt = @"images\music_placeholder.png";
+            }
+            else
+            {
+                fileupload = Request.Form.Files[0];
+                NewProduct.CoverArt = @"images\" + Path.GetFileName(fileupload.FileName);
+
+                var file = Path.Combine(_environment.ContentRootPath, "wwwroot\\images", fileupload.FileName);
+                using (var fileStream = new FileStream(file, FileMode.Create))
+                {
+                    await fileupload.CopyToAsync(fileStream);
+                }
             }
 
-            //if (OldProduct == null)
-            //{
-            //    _context.Products.Add(NewProduct);
-            //}
-            //else
-            //{
-                OldProduct = NewProduct;
+            if (!String.IsNullOrEmpty(HttpContext.Request.Query["id"]))
+            {
+
+                id = int.Parse(HttpContext.Request.Query["id"]);
+                OldProduct = _context.Products.FirstOrDefault(p => p.ProductID == id);
+
+                OldProduct.Type = NewProduct.Type;
+                OldProduct.Artist = NewProduct.Artist;
+                OldProduct.Album = NewProduct.Album;
+                OldProduct.CoverArt = NewProduct.CoverArt;
+                OldProduct.Description = NewProduct.Description;
+                OldProduct.Format = NewProduct.Format;
+                OldProduct.Genre = NewProduct.Genre;
+                OldProduct.Tracks = NewProduct.Tracks;
+                OldProduct.TracksTotal = NewProduct.TracksTotal;
+                OldProduct.Sides = NewProduct.Sides;
+                OldProduct.Label = NewProduct.Label;
+                OldProduct.ReleaseDate = NewProduct.ReleaseDate;
+                OldProduct.Price = NewProduct.Price;
+
                 _context.Products.Update(OldProduct);
-            //}
-            
-            _context.SaveChanges();
+                _context.SaveChanges();
+
+                return Redirect("ViewProduct?id=" + id.ToString());
+            }
+            else
+            {
+                _context.Products.Add(NewProduct);
+                _context.SaveChanges();
+
+                var latestEntry = _context.Products
+                    .OrderBy(le => le.ProductID)
+                    .Last();
+
+                return Redirect("ViewProduct?id=" + latestEntry.ProductID);
+            }
         }
 
     }
