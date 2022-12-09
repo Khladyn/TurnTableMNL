@@ -1,7 +1,7 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Homepage";
+    ViewData["Title"] = "Home";
 }
 
 
@@ -12,12 +12,13 @@
         background-position: center;
         background-size: cover;
         width: 100%;
-        min-height: 100vh;
     }
 </style>
 
-<div class="cont-index">
-    <h1><a asp-page="/VinylsCatalog" class="btn btn-default" id="shop"> Shop Vinyls >> </a></h1>
-    <h1><a asp-page="/CassettesCatalog" class="btn btn-default" id="shop"> Shop Cassettes >> </a></h1>
-    <h1><a asp-page="/CDsCatalog" class="btn btn-default" id="shop"> Shop CDs >> </a></h1>
-</div>
+<body>
+    <div class="cont-index">
+        <h1><a asp-page="/VinylsCatalog" class="btn btn-default" id="shop"> Shop Vinyls >> </a></h1>
+        <h1><a asp-page="/CassettesCatalog" class="btn btn-default" id="shop"> Shop Cassettes >> </a></h1>
+        <h1><a asp-page="/CDsCatalog" class="btn btn-default" id="shop"> Shop CDs >> </a></h1>
+    </div>
+</body>

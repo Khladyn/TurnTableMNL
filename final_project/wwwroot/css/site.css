@@ -23,7 +23,8 @@ html {
 }
 
 body {
-    height: 200vh;
+    padding-top: 80px;
+    min-height: 100vh;
 }
 
 /* CONTAINERS ________________________________________ */
@@ -34,12 +35,11 @@ body {
 }
 
 .cont-index {
-    background-image:
 }
 
 .cont-main {
     margin-top: 50px;
-    margin-bottom: 50px;
+    margin-bottom: 100px;
 }
 
 .cont-left {
@@ -52,10 +52,14 @@ body {
 .cont-right {
     float: right;
     width: 50%;
-    height: 750px;
+    height: 600px;
 }
 
 /* NAVIGATION BAR ____________________________________ */
+
+    .navbar {
+        background-color: white;
+    }
 
     .nav-item {
         margin-left: 10px;
@@ -419,24 +423,43 @@ p { /* paragraph */
 
 #shop {
     display: inline-block;
-    font-weight: 400;
-    line-height: 1.5;
-    color: #000000;
-    text-align: center;
-    text-decoration: none;
     vertical-align: middle;
-    cursor: pointer;
     -webkit-user-select: none;
     -moz-user-select: none;
     user-select: none;
+    /* text */
+    color: #000000;
+    font-size: 40px;
+    font-weight: 400;
+    text-align: center;
+    text-decoration: none;
+    /* button style */
     background-color: #FFFFFF;
     border: 1px solid #000000;
-    padding: 15px;
+    border-radius: 0px;
+    /* margins & padding */
+    padding: 10px;
     padding-left: 20px;
     padding-right: 20px;
-    font-size: 40px;
-    border-radius: 0px;
 }
+
+    #shop:hover {
+        /* text */
+        color: white;
+        /* button style */
+        background-color: #000000;
+        border: 1px solid #000000;
+        box-shadow: none;
+    }
+
+    #shop::selection {
+        /* text */
+        color: white;
+        /* button style */
+        background-color: #000000;
+        border: 1px solid #000000;
+        box-shadow: none;
+    }
 
 tr {
 }
