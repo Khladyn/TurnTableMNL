@@ -4,21 +4,13 @@
     ViewData["Title"] = "Home";
 }
 
-
-<style>
-    body {
-        /*background style*/
-        @*background-image: url('/images/bg-home.png');*@
-        background-position: center;
-        background-size: cover;
-        width: 100%;
-    }
-</style>
-
-<body>
+<body class="body-index">
     <div class="cont-index">
-        <h1><a asp-page="/VinylsCatalog" class="btn btn-default" id="shop"> Shop Vinyls >> </a></h1>
-        <h1><a asp-page="/CassettesCatalog" class="btn btn-default" id="shop"> Shop Cassettes >> </a></h1>
-        <h1><a asp-page="/CDsCatalog" class="btn btn-default" id="shop"> Shop CDs >> </a></h1>
+        <br /><br />
+        <h1><a asp-page="/VinylsCatalog" class="btn btn-default" id="btn-shopVinyls"> Shop Vinyls >> </a></h1>
+        <br />
+        <h1><a asp-page="/CassettesCatalog" class="btn btn-default" id="btn-shopCassettes"> Shop Cassettes >> </a></h1>
+        <br />
+        <h1><a asp-page="/CDsCatalog" class="btn btn-default" id="btn-shopCDs"> Shop CDs >> </a></h1>
     </div>
 </body>

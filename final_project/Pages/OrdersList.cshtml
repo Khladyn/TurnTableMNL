@@ -11,137 +11,132 @@
     }
 }
 
-<h2> @ViewData["Title"] (@Model.itemCount) </h2>
-
-@if (Model.orders == null || Model.orders.Count == 0)
-{
-    <div class="my-5">
-        <div class="my-4">
-            <h6 class="text-center"> @Model.emptyOrder </h6>
-        </div>
-
-        <div class="d-flex flex-column align-items-center gap-4">
-
-            <a asp-page="/VinylsCatalog">
-                <button class="btn btn-outline-primary">
-                    Browse vinyls >>
-                </button>
-            </a>
-
-            <a asp-page="/CDsCatalog">
-                <button class="btn btn-outline-primary">
-                    Browse CDs >>
-                </button>
-            </a>
-
-            <a asp-page="/CassettesCatalog">
-                <button class="btn btn-outline-primary">
-                    Browse cassettes >>
-                </button>
-            </a>
-
-        </div>
+<body>
+    <div class="default-title">
+        <h1 id="default-title-text">My Orders</h1>
     </div>
-}
-else
-{
 
-    <table class="table table-striped">
+    @*
+    <div class="info-title">
+    <p class="order-count-text"> @ViewData["Title"] (@Model.itemCount)</p>
+    </div>
+    *@
 
-        <thead>
-            <tr>
-                <th scope="col" class="text-center col-1"> Order Status </th>
-                <th scope="col" class="text-center col-2"> Purchaser Info </th>
-                <th scope="col" class="text-center col-2"> Mode of Payment </th>
-                <th scope="col" class="text-center col-2"> Product Info </th>
-                <th scope="col" class="text-center col-1"> Price </th>
-                <th scope="col" class="text-center col-1"> Quantity </th>
-                <th scope="col" class="text-center col-1"> Subtotal </th>
-            </tr>
-        </thead>
-        <tbody>
+    @if (Model.orders == null || Model.orders.Count == 0)
+    {
+        <div>
+            <div class="info-title">
+                <p class="info-title-text"> @Model.emptyOrder </p>
+            </div>
 
-            @foreach (var orderItem in Model.orders)
-            {
+            @* BROWSE BUTTONS *@
+            <p class="browse-text">
+                <a asp-page="/VinylsCatalog" class="btn btn-default" id="btn-browse"> Browse Vinyls >> </a>&nbsp;&nbsp;
+                <a asp-page="/CassettesCatalog" class="btn btn-default" id="btn-browse"> Browse Cassettes >> </a>&nbsp;&nbsp;
+                <a asp-page="/CDsCatalog" class="btn btn-default" id="btn-browse"> Browse CDs >> </a>
+            </p>
+        </div>
+    }
+    else
+    {
 
+        <table class="table table-striped">
+
+            <thead>
                 <tr>
-                    <td class="align-middle px-4">
-                        <div> #@orderItem.OrderID </div>
-                        <div class="h6 badge
+                    <th scope="col" class="text-center col-1"> Order Status </th>
+                    <th scope="col" class="text-center col-2"> Purchaser Info </th>
+                    <th scope="col" class="text-center col-2"> Mode of Payment </th>
+                    <th scope="col" class="text-center col-2"> Product Info </th>
+                    <th scope="col" class="text-center col-1"> Price </th>
+                    <th scope="col" class="text-center col-1"> Quantity </th>
+                    <th scope="col" class="text-center col-1"> Subtotal </th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var orderItem in Model.orders)
+                {
+
+                    <tr>
+                        <td class="align-middle px-4">
+                            <div> #@orderItem.OrderID </div>
+                            <div class="h6 badge
                             @(orderItem.OrderStatus == "Cancelled"
                                 ? "alert-danger"
                                 : @orderItem.OrderStatus == "Paid"
                                 ? "alert-success"
                                 : "alert-warning")">
-                                     @orderItem.OrderStatus
-                        </div>
-                        <div>
-                        <a asp-page="/OrdersList"
+                                @orderItem.OrderStatus
+                            </div>
+                            <div>
+                                <a asp-page="/OrdersList"
                            asp-page-handler="Cancel"
                            asp-route-id=@orderItem.OrderID>
-                           <button class="btn btn-outline-danger
+                                    <button class="btn btn-outline-danger
                             @(orderItem.OrderStatus == "Cancelled"
-                                ? "invisible" : "visible")" >
-                               Cancel order
-                           </button>
-                        </a>
-                        </div>
-                    </td>
+                                ? "invisible" : "visible")">
+                                        Cancel order
+                                    </button>
+                                </a>
+                            </div>
+                        </td>
 
-                    <td class="align-middle px-4">
-                        <div> <b> Username: </b> @orderItem.Username </div>
-                        <div> <b> Full Name: </b> @orderItem.FirstName @orderItem.LastName </div>
-                        <div> <b> Address: </b>  @orderItem.Address </div>
-                        <div> <b> Email: </b>  @orderItem.Email </div>
-                        <div> <b> Contact #: </b>  @orderItem.ContactNumber </div>
-                        
-                    </td>
-                    <td class="text-center align-middle">
-                        <div> @orderItem.ModeOfPayment </div>
-                        <div> @orderItem.DateAdded </div>
-                    </td>
-                    <td class="align-middle px-4">
-                        <div>
-                            <b> Album: </b>
-                            <a asp-page="/ViewProduct"
-                               asp-route-id=@orderItem.ProductID>
-                                @orderItem.Album
-                            </a>
-                        </div>
-                        <div> <b> Artist: </b> @orderItem.Artist </div>
-                        <b> Type: </b> <div class="badge alert-dark"> @orderItem.Type </div>
-                    </td>
-                    <td class="align-middle px-4" style="text-align: right"> @orderItem.Price.ToString("#,##0.00") </td>
-                    <td class="text-center align-middle">
-                        <input type="number"
+                        <td class="align-middle px-4">
+                            <div> <b> Username: </b> @orderItem.Username </div>
+                            <div> <b> Full Name: </b> @orderItem.FirstName @orderItem.LastName </div>
+                            <div> <b> Address: </b>  @orderItem.Address </div>
+                            <div> <b> Email: </b>  @orderItem.Email </div>
+                            <div> <b> Contact #: </b>  @orderItem.ContactNumber </div>
+
+                        </td>
+                        <td class="text-center align-middle">
+                            <div> @orderItem.ModeOfPayment </div>
+                            <div> @orderItem.DateAdded </div>
+                        </td>
+                        <td class="align-middle px-4">
+                            <div>
+                                <b> Album: </b>
+                                <a asp-page="/ViewProduct"
+                           asp-route-id=@orderItem.ProductID>
+                                    @orderItem.Album
+                                </a>
+                            </div>
+                            <div> <b> Artist: </b> @orderItem.Artist </div>
+                            <b> Type: </b> <div class="badge alert-dark"> @orderItem.Type </div>
+                        </td>
+                        <td class="align-middle px-4" style="text-align: right"> @orderItem.Price.ToString("#,##0.00") </td>
+                        <td class="text-center align-middle">
+                            <input type="number"
                            name="quantity"
                            value=@orderItem.Quantity
                            min="0"
                            class="col-4"
                            disabled />
-                    </td>
-                    <td class="align-middle px-4" style="text-align: right">
-                        <h6 id="subtotal"> @orderItem.Subtotal.ToString("#,##0.00") </h6>
-                    </td>
+                        </td>
+                        <td class="align-middle px-4" style="text-align: right">
+                            <h6 id="subtotal"> @orderItem.Subtotal.ToString("#,##0.00") </h6>
+                        </td>
+                    </tr>
+
+                    Model.total += orderItem.Subtotal;
+
+                }
+                <tr class="bg-dark">
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td class="text-center align-middle text-white"> Total: </td>
+                    <td class="text-center align-middle text-white fw-bold" id="total"> PHP @Model.total.ToString("#,##0.00") </td>
                 </tr>
 
-                Model.total += orderItem.Subtotal;
+            </tbody>
+        </table>
 
-            }
-            <tr class="bg-dark">
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td class="text-center align-middle text-white"> Total: </td>
-                <td class="text-center align-middle text-white fw-bold" id="total"> PHP @Model.total.ToString("#,##0.00") </td>
-            </tr>
-
-        </tbody>
-    </table>
-
-    <button onclick="history.back()" class="btn btn-secondary"> Go back </button>
+        <button onclick="history.back()" class="btn btn-secondary"> Go back </button>
 
 
-}
+    }
+</body>
