@@ -4,58 +4,71 @@
     ViewData["Title"] = "View Product";
 }
 
-<h2> @ViewData["Title"] </h2>
+<div class="cont-left">
+    <br /><br /><br />
 
-<img src=@Model.product.CoverArt alt="cover art" width="350" />
-<h4> @Model.product.Artist </h4>
-<h4> @Model.product.Album </h4>
-<h4> @Model.product.Format </h4>
-<h4> @Model.product.Price </h4>
-<h4> @Model.product.Description </h4>
-<h4> @Model.product.Tracks </h4>
-<h4> @Model.product.TracksTotal </h4>
-<h4> @Model.product.Sides </h4>
-<h4> @Model.product.ReleaseDate </h4>
-<h4> @Model.product.Label </h4>
-<h4> @Model.product.Genre </h4>
+    <img class="img-viewProduct" src=@Model.product.CoverArt alt="cover art" width="450" />
+</div>
 
+<div class="cont-right">
+    <br /><br /><br />
 
-    <a asp-page="/Cart"
-       asp-page-handler="Add"
-       asp-route-id=@Model.product.ProductID>
-        <button class="btn" title="Add to Cart">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-plus-fill" viewBox="0 0 16 16">
-                <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM9 5.5V7h1.5a.5.5 0 0 1 0 1H9v1.5a.5.5 0 0 1-1 0V8H6.5a.5.5 0 0 1 0-1H8V5.5a.5.5 0 0 1 1 0z" />
-            </svg>
-        </button>
-    </a>
+    @* PRODUCT TITLE *@
+    <p class="viewProduct-artist">@Model.product.Artist</p>
+    <p class="viewProduct-album">@Model.product.Album</p>
+    <p class="viewProduct-format">Format — @Model.product.Format</p>
 
-    <a asp-page="/Favorites"
-       asp-page-handler="Add"
-       asp-route-id=@Model.product.ProductID>
-        <button class="btn" title="Add to Favorites">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
-                <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
-            </svg>
-        </button>
-    </a>
+    <hr />
 
-@if (User.HasClaim("Admin", "true"))
-{
-    <td>
-        <a
-            asp-page="/AddProduct"
-            asp-page-handler="Edit"
-            asp-route-id=@Model.product.ProductID>
-                Edit
-        </a>
-        <a
-            asp-page=@TempData["PageRedirect"]
-            asp-page-handler="Delete"
-            asp-route-id=@Model.product.ProductID>
-                Delete
-        </a>
-    </td>
-}
+    @* PRODUCT PRICE *@
+    <p class="viewProduct-price">Php @Model.product.Price<span>.00</span></p>
 
-<button onclick="history.back()" class="btn btn-secondary"> Go back </button>
+    @* ADD TO CART & FAVORITES BUTTON *@
+    <p class="addTo-text">
+        <a class="btn btn-default" id="btn-addTo" asp-page="/Cart" asp-page-handler="Add" asp-route-id=@Model.product.ProductID>Add to Cart +</a>&nbsp;&nbsp;
+        <a class="btn btn-default" id="btn-addTo" asp-page="/Favorites" asp-page-handler="Add" asp-route-id=@Model.product.ProductID>Add to Faves ♡</a>
+    </p>
+
+    @* DESCRIPTION *@
+    <p class="viewProduct-description">Description</p><hr />
+    <p class="viewProduct-descriptionText">@Model.product.Description</p>
+
+    <br />
+
+    @* TRACKS *@
+    @*<h4>@Model.product.Tracks</h4>*@
+
+    @* ITEM DETAILS *@
+    <p class="viewProduct-itemDetails">Item Details</p><hr />
+    <table>
+        <tr>
+            <td class="viewProduct-itemDetails-col1">Artist</td>
+            <td class="viewProduct-itemDetails-col2">@Model.product.Artist</td>
+        </tr>
+        <tr>
+            <td class="viewProduct-itemDetails-col1">Format</td>
+            <td class="viewProduct-itemDetails-col2">@Model.product.Format</td>
+        </tr>
+        <tr>
+            <td class="viewProduct-itemDetails-col1">Total Tracks</td>
+            <td class="viewProduct-itemDetails-col2">@Model.product.TracksTotal</td>
+        </tr>
+        <tr>
+            <td class="viewProduct-itemDetails-col1">Sides</td>
+            <td class="viewProduct-itemDetails-col2">@Model.product.Sides</td>
+        </tr>
+        <tr>
+            <td class="viewProduct-itemDetails-col1">Released</td>
+            <td class="viewProduct-itemDetails-col2">@Model.product.ReleaseDate.Year</td>
+        </tr>
+        <tr>
+            <td class="viewProduct-itemDetails-col1">Label</td>
+            <td class="viewProduct-itemDetails-col2">@Model.product.Label</td>
+        </tr>
+        <tr>
+            <td class="viewProduct-itemDetails-col1">Genre</td>
+            <td class="viewProduct-itemDetails-col2">@Model.product.Genre</td>
+        </tr>
+    </table>
+
+</div>

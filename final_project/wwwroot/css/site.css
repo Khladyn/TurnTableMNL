@@ -1,18 +1,445 @@
+@charset "ISO-8859-1";
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Unna:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+* {
+    color: #000000;
+    font-family: Roboto Mono, sans-serif;
+}
+
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-  margin-bottom: 60px;
+    height: 200vh;
+}
+
+/* CONTAINERS ________________________________________ */
+
+.container {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.cont-index {
+    background-image:
+}
+
+.cont-main {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.cont-left {
+    float: left;
+    width: 50%;
+    align-items: center;
+    vertical-align: middle;
+}
+
+.cont-right {
+    float: right;
+    width: 50%;
+    height: 750px;
+}
+
+/* NAVIGATION BAR ____________________________________ */
+
+    .nav-item {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .navbar-brand {
+        color: #262626;
+        font-size: 25px;
+        font-weight: 500;
+        text-transform: uppercase;
+        margin-left: 220px;
+        margin-right: 220px;
+    }
+
+    .nav-link {
+        /* font-size: value; */
+        /* font-weight: value; */
+        text-transform: uppercase;
+    }
+
+        .nav-link:hover {
+            font-style: italic;
+        }
+
+/* CATALOG ____________________________________________ */
+
+.marquee {
+}
+
+.cataglog-title {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+    .catalog-title-text {
+        font-size: 60px;
+        font-weight: 700;
+        text-align: left;
+        text-transform: uppercase;
+    }
+
+.catalog-products {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    grid-row-gap: 20px;
+    grid-column-gap: 10px;
+    justify-content: space-between;
+    /* margin & padding */
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.product {
+    display: flex;
+    flex-direction: column;
+    justify-self: center;
+    /* margin & padding */
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.product-img {
+    object-fit: cover;
+    flex-shrink: 0;
+    width: 260px;
+    height: 250px;
+    transition: 0.1s;
+    cursor: pointer;
+    transform: scale(1.00);
+}
+
+    .product-img:hover {
+    }
+
+.product-details {
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid white;
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 24px;
+    color: transparent;
+}
+
+.product-price {
+    font-size: 15px;
+    font-weight: 400;
+    text-align: left;
+    /* margin & padding */
+    margin: 0px;
+    padding-top: 12px;
+    padding-bottom: 8px;
+    padding-left: 2px;
+    padding-right: 2px;
+}
+
+.product-album {
+    font-size: 15px;
+    font-weight: 700;
+    text-align: left;
+    /* margin & padding */
+    margin: 0px;
+    padding-top: 0px;
+    padding-bottom: 2px;
+    padding-left: 2px;
+    padding-right: 2px;
+}
+
+.product-artist {
+    font-size: 15px;
+    font-weight: 400;
+    text-align: left;
+    /* margin & padding */
+    margin: 0px;
+    padding-top: 0px;
+    padding-bottom: 2px;
+    padding-left: 2px;
+    padding-right: 2px;
+}
+
+/* VIEW PRODUCT ______________________________________ */
+
+hr {
+    border: none;
+    border-bottom: 1px solid #000000;
+}
+
+.img-viewProduct {
+    outline: 1px solid #000000;
+    width: 560px;
+    height: 560px;
+}
+
+.addTo-text {
+    font-size: 20px;
+    font-weight: 400;
+    text-align: left;
+    text-transform: uppercase;
+    /* margins & padding */
+    margin-top: 30px;
+    margin-bottom: 0px;
+    margin-left: 10px;
+    margin-right: 0px;
+}
+
+#btn-addTo {
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    /* text */
+    color: #000000;
+    font-size: 18px;
+    font-weight: 400;
+    text-align: center;
+    text-decoration: none;
+    /* button style */
+    background-color: #FFFFFF;
+    border: 1px solid #000000;
+    border-radius: 0px;
+    /* margins & padding */
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+    #btn-addTo:hover {
+        /* text */
+        color: white;
+        /* button style */
+        background-color: #000000;
+        border: 1px solid #000000;
+        box-shadow: none;
+    }
+
+    #btn-addTo::selection {
+        /* text */
+        color: white;
+        /* button style */
+        background-color: #000000;
+        border: 1px solid #000000;
+        box-shadow: none;
+    }
+
+.viewProduct-artist {
+    font-size: 20px;
+    font-weight: 400;
+    text-align: left;
+    /* margin & padding */
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding: 0px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.viewProduct-album {
+    font-size: 40px;
+    font-weight: 600;
+    text-align: left;
+    /* margin & padding */
+    margin-top: -5px;
+    margin-bottom: 5px;
+    padding: 0px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.viewProduct-format {
+    font-size: 18px;
+    font-weight: 400;
+    text-align: left;
+    /* margin & padding */
+    margin: 0px;
+    padding: 0px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.viewProduct-price {
+    font-size: 35px;
+    font-weight: 300;
+    text-align: left;
+    /* margin & padding */
+    margin: 0px;
+    padding: 0px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.viewProduct-description {
+    font-size: 15px;
+    font-weight: 600;
+    text-align: left;
+    /* margin & padding */
+    margin-top: 80px;
+    margin-bottom: -5px;
+    padding: 0px;
+    padding-left: 15px;
+    padding-right: 5px;
+}
+
+    .viewProduct-descriptionText {
+        font-size: 14px;
+        font-weight: 400;
+        text-align: left;
+        /* margin & padding */
+        margin: 0px;
+        padding: 0px;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+.viewProduct-itemDetails {
+    font-size: 15px;
+    font-weight: 600;
+    text-align: left;
+    /* margin & padding */
+    margin-top: 15px;
+    margin-bottom: -5px;
+    padding: 0px;
+    padding-left: 15px;
+    padding-right: 5px;
+}
+
+    .viewProduct-itemDetails-col1 {
+        font-size: 14px;
+        font-weight: 600;
+        text-align: right;
+        margin: 0px;
+        padding: 1px;
+        padding-right: 10px;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .viewProduct-itemDetails-col2 {
+        font-size: 14px;
+        font-weight: 400;
+        text-align: left;
+        margin: 0px;
+        padding: 1px;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+/* TEXT ______________________________________________ */
+
+h1 { /* Title */
+    font-size: 60px;
+    font-weight: 500;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+    h1:hover {
+    }
+
+h2 { /* Subtitle 1 */
+    font-size: 15px;
+    font-weight: 700;
+    text-align: left;
+}
+
+h3 {
+    font-size: 15px;
+    font-weight: 600;
+    text-align: center;
+}
+
+h4 {
+    font-size: 15px;
+    font-weight: 400;
+    text-align: left;
+}
+
+p { /* paragraph */
+    font-size: 15px;
+    font-weight: 400;
+    text-align: left;
+    margin: 1px;
+    padding: 0px;
+}
+
+/* __________________________________________________ */
+
+.form-control {
+    width: 100%;
+    align-items: center;
+}
+
+    .form-control:hover {
+        box-shadow: none;
+        outline: none;
+    }
+
+    .form-control:active {
+        box-shadow: none;
+        outline: none;
+    }
+
+.col-itemDetails {
+    width: auto;
+    height: 0px;
+    padding-top: 1px;
+    padding-bottom: 1px;
+}
+
+    #label {
+        padding-right: 15px;
+        text-align-last: right;
+    }
+
+    #details {
+        text-align-last: left;
+    }
+
+#shop {
+    display: inline-block;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #000000;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    background-color: #FFFFFF;
+    border: 1px solid #000000;
+    padding: 15px;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 40px;
+    border-radius: 0px;
+}
+
+tr {
+}
+
+td {
 }

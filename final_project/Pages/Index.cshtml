@@ -4,9 +4,20 @@
     ViewData["Title"] = "Homepage";
 }
 
-<div class="text-center">
-    <h1 class="display-4"> TurnTable MNL </h1>
-    <h3><a asp-page="/VinylsCatalog"> Shop Vinyls >> </a> </h3>
-    <h3><a asp-page="/CassettesCatalog"> Shop Cassettes >> </a> </h3>
-    <h3><a asp-page="/CDsCatalog"> Shop CDs >> </a> </h3>
+
+<style>
+    body {
+        /*background style*/
+        @*background-image: url('/images/bg-home.png');*@
+        background-position: center;
+        background-size: cover;
+        width: 100%;
+        min-height: 100vh;
+    }
+</style>
+
+<div class="cont-index">
+    <h1><a asp-page="/VinylsCatalog" class="btn btn-default" id="shop"> Shop Vinyls >> </a></h1>
+    <h1><a asp-page="/CassettesCatalog" class="btn btn-default" id="shop"> Shop Cassettes >> </a></h1>
+    <h1><a asp-page="/CDsCatalog" class="btn btn-default" id="shop"> Shop CDs >> </a></h1>
 </div>
