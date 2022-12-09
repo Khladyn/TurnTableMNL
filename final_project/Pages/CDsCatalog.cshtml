@@ -1,76 +1,40 @@
 ﻿@page
 @model final_project.Pages.Shared.CDsCatalogModel
 @{
-    ViewData["Title"] = "CDs Catalog";
+    ViewData["Title"] = "CD";
 }
+
 <body>
-    <table>
-        <thead>
-        <th> Cover Art </th>
-        <th> Price </th>
-        <th> Album </th>
-        <th> Artist </th>
-        <th> Type </th>
-        <th> Action </th>
-        </thead>
-        <tbody>
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success position-fixed" role="alert">
+            @TempData["Success"]
+        </div>
+    }
+
+    <div class="cont-main">
+
+        <div class="catalog-title">
+            <marquee behavior=scroll direction="left" scrollamount="18">
+                <h1 id="catalog-title-text">CDS CDS CDS CDS CDS CDS CDS CDS CDS CDS CDS CDS CDS</h1>
+            </marquee>
+        </div>
+
+        <div class="catalog-products">
             @foreach (var cd in Model.CDs)
             {
                 if (cd.Type == "cd")
                 {
-                    <tr>
-                        <td>
-                            <a asp-page="/ViewProduct" asp-route-id=@cd.ProductID>
-                            <img src=@cd.CoverArt alt="cover art" width="150" />
-                            </a>
-                        </td>
-                        <td>@cd.Price</td>
-                        <td>@cd.Album</td>
-                        <td>@cd.Artist</td>
-                        <td>@cd.Type</td>
-                        <td>
-                            <a asp-page="/Cart"
-                               asp-page-handler="Add"
-                               asp-route-id=@cd.ProductID>
-                                <button class="btn" title="Add to Cart">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-plus-fill" viewBox="0 0 16 16">
-                                        <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM9 5.5V7h1.5a.5.5 0 0 1 0 1H9v1.5a.5.5 0 0 1-1 0V8H6.5a.5.5 0 0 1 0-1H8V5.5a.5.5 0 0 1 1 0z" />
-                                    </svg>
-                                </button>
-                            </a>
-                        </td>
-
-                        <td>
-                            <a asp-page="/Favorites"
-                               asp-page-handler="Add"
-                               asp-route-id=@cd.ProductID>
-                                <button class="btn" title="Add to Favorites">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
-                                    </svg>
-                                </button>
-                            </a>
-                        </td>
-                        @if (User.HasClaim("Admin", "true"))
-                        {
-                            <td>
-                                <a
-                                    asp-page-handler="Edit">
-                                        Edit
-                                </a>
-                                <a
-                                    asp-page="/VinylsCatalog"
-                                    asp-page-handler="Delete"
-                                    asp-route-id=@cd.ProductID>
-                                        Delete
-                                </a>
-                            </td>
-                        }
-
-                    </tr>
+                    <div class="product">
+                        <a asp-page="/ViewProduct" asp-route-id=@cd.ProductID><img class="product-img" src="@cd.CoverArt" width="250" /></a>
+                        <div class="product-details">
+                            <p class="product-price">Php @cd.Price<span>.00</span></p>
+                            <p class="product-album">@cd.Album</p>
+                            <p class="product-artist">@cd.Artist</p>
+                        </div>
+                    </div>
                 }
-
             }
-        </tbody>
-    </table>
+        </div>
+    </div>
 </body>

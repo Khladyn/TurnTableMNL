@@ -9,33 +9,39 @@
 <h3 class="text-center text-black mt-5 p-3"> TurnTableMNL </h3>
 
 
-<div class="container border p-4 col-4 d-flex flex-column gap-3">
-    <form method="post">
+<div class="container border p-4 col-4 d-flex flex-column gap-3" id="cont-login">
+        <form method="post" autocomplete="off">
 
+        @* USERNAME *@
         <div class="form-group-row p-2">
             <label asp-for="Credential.Username" class="my-2"></label>
-            <input type="text" asp-for="Credential.Username" class="form-control" />
+                <input type="text" asp-for="Credential.Username" class="form-control" id="" />
             <span asp-validation-for="Credential.Username" class="text-danger"></span>
         </div>
 
+        @* PASSWORD *@
         <div class="form-group-row p-2">
             <label asp-for="Credential.Password"class="my-2"></label>
-            <input type="password" asp-for="Credential.Password" class="form-control" />
+                <input type="password" asp-for="Credential.Password" class="form-control" id="" />
             <span asp-validation-for="Credential.Password" class="text-danger"></span>
         </div>
 
-        <div class="p-2">
-            <input type="checkbox" asp-for="Credential.Remember" class="form-check-input" />
-            <label asp-for="Credential.Remember"></label>
-        </div>
+        @* REMEMBER ME *@
+        @*
+            <div class="p-2">
+                <input type="checkbox" asp-for="Credential.Remember" class="form-check-input" />
+                <label asp-for="Credential.Remember"></label>
+            </div>
+        *@
 
+        @* LOGIN BUTTON *@
         <div class="p-2 text-center">
-            <input type="submit" class="btn btn-primary w-100" />
+                <input type="submit" class="btn btn-primary w-100" id="" value="Login" />
         </div>
 
-        <div class="p-2 text-center d-flex justify-content-between">
-            <a asp-page="/Registration"> New User </a>
-            <a asp-page="/"> Forgot Password </a>
+        @* LINK TO REGISTRATION PAGE *@
+        <div class="p-2 text-center"> @*d-flex justify-content-between*@
+            Don't have an account? <a asp-page="/Registration">Register here</a>.
         </div>
 
     </form>

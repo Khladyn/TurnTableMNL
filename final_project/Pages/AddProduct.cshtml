@@ -10,61 +10,60 @@
 
     <form method="post" enctype="multipart/form-data">
 
-        <h4> Type: </h4>
+        Type
         <select asp-for=@Model.NewProduct.Type>
             <option value="vinyl"> Vinyl </option>
             <option value="cassette"> Cassette </option>
             <option value="cd"> CD </option>
-        </select>
+        </select><br /><br />
 
-        <h4> Artist: </h4>
-        <input type="text" asp-for=@Model.NewProduct.Artist required/>
+        Artist
+        <input type="text" asp-for=@Model.NewProduct.Artist required/><br /><br />
 
-        <h4> Album: </h4>
-        <input type="text" asp-for=@Model.NewProduct.Album required/>
+        Album
+        <input type="text" asp-for=@Model.NewProduct.Album required /><br /><br />
 
-        <h4> Cover Art: </h4>
-        <input type="file" name="fileupload" accept=".png, .jpg, .jpeg" />
+        Cover Art
+        <input type="file" name="fileupload" accept=".png, .jpg, .jpeg" /><br /><br />
 
-        <h4> Format: </h4>
+        Format
         <select asp-for=@Model.NewProduct.Format>
             <option value="LP"> Long Play (LP) </option>
             <option value="EP"> Extended Play (EP) </option>
-        </select>
+        </select><br /><br />
 
-        <h4> Price: </h4>
-        <input type="number" step=".01" asp-for=@Model.NewProduct.Price required />
+        Price
+        <input type="number" step=".01" asp-for=@Model.NewProduct.Price required /><br /><br />
 
-        <h4> Description: </h4>
-        <input type="textarea" asp-for=@Model.NewProduct.Description />
+        Description
+        <textarea asp-for=@Model.NewProduct.Description style="width: 200px;"></textarea></><br /><br />
 
-        <h4> Tracks: </h4>
-        <input type="textarea" asp-for=@Model.NewProduct.Tracks required />
+        Tracks
+        <textarea asp-for=@Model.NewProduct.Tracks style="width: 200px;" required></textarea><br /><br />
 
-        <h4> Tracks Total: </h4>
-        <input type="number" min="1" value="1" asp-for=@Model.NewProduct.TracksTotal required />
+        Tracks Total
+        <input type="number" min="1" value="1" asp-for=@Model.NewProduct.TracksTotal required /><br /><br />
 
-        <h4> Sides: </h4>
-        <input type="number" min="1" max="2" value="1" asp-for=@Model.NewProduct.Sides required />
+        Sides
+        <input type="number" min="1" max="2" value="1" asp-for=@Model.NewProduct.Sides required /><br /><br />
 
-        <h4> Release Date: </h4>
-        <input type="date" asp-for=@Model.NewProduct.ReleaseDate />
+        Release Date
+        <input type="date" asp-for=@Model.NewProduct.ReleaseDate /><br /><br />
 
-        <h4> Label: </h4>
-        <input type="text" asp-for=@Model.NewProduct.Label required />
+        Label
+        <input type="text" asp-for=@Model.NewProduct.Label required /><br /><br />
 
-        <h4> Genre: </h4>
+        Genre
         <select asp-for=@Model.NewProduct.Genre>
             <option value="rock"> Rock </option>
             <option value="jazz"> Jazz </option>
             <option value="country"> Country </option>
-        </select>
+        </select><br /><br />
 
         @{
             Model.NewProduct.DateAdded = DateTime.Now;
         }
 
-        <br /><br />
         <input type="submit" value="Add Product" />
 
     </form>
