@@ -13,6 +13,9 @@
             </marquee>
         </div>
 
+        <input type="search" id="search" placeholder="What are you looking for?" />
+        <div class="error" style="display: none;">No results found.</div>
+
         <div class="catalog-products">
             @foreach (var vinyl in Model.Vinyls)
             {
@@ -21,7 +24,16 @@
                     <div class="product">
                         <a asp-page="/ViewProduct" asp-route-id=@vinyl.ProductID><img class="product-img" src="@vinyl.CoverArt" /></a>
                         <div class="product-details">
+
                             <p class="product-price">Php @vinyl.Price.ToString("#,##0.00")</p>
+
+                            <p class="product-price">Php @vinyl.Price<span>.00</span>
+                                <span class="product-actions">
+                                    <a asp-page="/Cart" asp-page-handler="Add" asp-route-id=@vinyl.ProductID title="Add to cart">+</a>
+                                    <a asp-page="/Favorites" asp-page-handler="Add" asp-route-id=@vinyl.ProductID title="Add to faves">♡</a>
+                                </span>
+                            </p>
+
                             <p class="product-album">@vinyl.Album</p>
                             <p class="product-artist">@vinyl.Artist</p>
                         </div>
@@ -31,3 +43,32 @@
         </div>
     </div>
 </body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+<script>
+    $(document).ready(function()
+        {
+            $('#search').on('keyup', function()
+            {
+                var dataSearch = $(this).val().toLowerCase();
+                $('.product').each(function()
+                {
+                    var stringData = $(this).text().toLowerCase();
+                    if (stringData.indexOf(dataSearch) === -1)
+                    {
+                        $(this).hide();
+                    } else {
+                        $(this).show();
+                    }
+
+                    if ($('.product:visible').length === 0)
+                    {
+                        $('.error').show();
+                    } else {
+                        $('.error').hide();
+                    }
+                });
+            });
+        });
+</script>

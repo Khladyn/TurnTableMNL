@@ -5,6 +5,7 @@
 }
 
 <body>
+
     <div class="cont-main">
 
         <div class="catalog-title">
@@ -12,6 +13,9 @@
                 <h1 id="catalog-title-text">COMPACT DISCS COMPACT DISCS COMPACT DISCS COMPACT DISCS COMPACT DISCS COMPACT DISCS COMPACT DISCS COMPACT DISCS COMPACT DISCS COMPACT DISCS COMPACT DISCS COMPACT DISCS COMPACT DISCS</h1>
             </marquee>
         </div>
+
+        <input type="search" id="search" placeholder="What are you looking for?" />
+        <div class="error" style="display: none;">No results found.</div>
 
         <div class="catalog-products">
             @foreach (var cd in Model.CDs)
@@ -21,7 +25,16 @@
                     <div class="product">
                         <a asp-page="/ViewProduct" asp-route-id=@cd.ProductID><img class="product-img" src="@cd.CoverArt" /></a>
                         <div class="product-details">
+
                             <p class="product-price">Php @cd.Price.ToString("#,##0.00")</p>
+
+                            <p class="product-price">Php @cd.Price<span>.00</span>
+                                <span class="product-actions">
+                                    <a asp-page="/Cart" asp-page-handler="Add" asp-route-id=@cd.ProductID title="Add to cart">+</a>
+                                    <a asp-page="/Favorites" asp-page-handler="Add" asp-route-id=@cd.ProductID title="Add to faves">♡</a>
+                                </span>
+                            </p
+                            
                             <p class="product-album">@cd.Album</p>
                             <p class="product-artist">@cd.Artist</p>
                         </div>
@@ -31,3 +44,27 @@
         </div>
     </div>
 </body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#search').on('keyup', function () {
+            var dataSearch = $(this).val().toLowerCase();
+            $('.product').each(function () {
+                var stringData = $(this).text().toLowerCase();
+                if (stringData.indexOf(dataSearch) === -1) {
+                    $(this).hide();
+                } else {
+                    $(this).show();
+                }
+
+                if ($('.product:visible').length === 0) {
+                    $('.error').show();
+                } else {
+                    $('.error').hide();
+                }
+            });
+        });
+    });
+</script>
