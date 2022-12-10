@@ -1,74 +1,76 @@
 ﻿@page
 @model final_project.Pages.ViewProductModel
 @{
-    ViewData["Title"] = "View Product";
+    ViewData["Title"] = @Model.product.Album;
 }
 
-<div class="cont-left">
-    <br /><br /><br />
+<body style="height: 120vh;">
+    <div class="cont-left">
+        <br /><br /><br />
 
-    <img class="img-viewProduct" src=@Model.product.CoverArt alt="cover art" width="450" />
-</div>
+        <img class="img-viewProduct" src=@Model.product.CoverArt alt="cover art" width="450" />
+    </div>
 
-<div class="cont-right">
-    <br /><br /><br />
+    <div class="cont-right">
+        <br /><br /><br />
 
-    @* PRODUCT TITLE *@
-    <p class="viewProduct-artist">@Model.product.Artist</p>
-    <p class="viewProduct-album">@Model.product.Album</p>
-    <p class="viewProduct-format">Format — @Model.product.Format</p>
+        @* PRODUCT TITLE *@
+        <p class="viewProduct-artist">@Model.product.Artist</p>
+        <p class="viewProduct-album">@Model.product.Album</p>
+        <p class="viewProduct-format">Format — @Model.product.Format</p>
 
-    <hr />
+        <hr />
 
-    @* PRODUCT PRICE *@
-    <p class="viewProduct-price">Php @Model.product.Price<span>.00</span></p>
+        @* PRODUCT PRICE *@
+        <p class="viewProduct-price">Php @Model.product.Price<span>.00</span></p>
 
-    @* ADD TO CART & FAVORITES BUTTON *@
-    <p class="addTo-text">
-        <a class="btn btn-default" id="btn-addTo" asp-page="/Cart" asp-page-handler="Add" asp-route-id=@Model.product.ProductID>Add to Cart +</a>&nbsp;&nbsp;
-        <a class="btn btn-default" id="btn-addTo" asp-page="/Favorites" asp-page-handler="Add" asp-route-id=@Model.product.ProductID>Add to Faves ♡</a>
-    </p>
+        @* ADD TO CART & FAVORITES BUTTON *@
+        <p class="addTo-text">
+            <a class="btn btn-default" id="btn-addTo" asp-page="/Cart" asp-page-handler="Add" asp-route-id=@Model.product.ProductID>Add to Cart +</a>&nbsp;&nbsp;
+            <a class="btn btn-default" id="btn-addTo" asp-page="/Favorites" asp-page-handler="Add" asp-route-id=@Model.product.ProductID>Add to Faves ♡</a>
+        </p>
 
-    @* DESCRIPTION *@
-    <p class="viewProduct-description">Description</p><hr />
-    <p class="viewProduct-descriptionText">@Model.product.Description</p>
+        @* DESCRIPTION *@
+        <p class="viewProduct-description">Description</p><hr />
+        <p class="viewProduct-descriptionText">@Model.product.Description</p>
 
-    <br />
+        <br />
 
-    @* TRACKS *@
-    @*<h4>@Model.product.Tracks</h4>*@
+        @* TRACKS *@
+        @*<h4>@Model.product.Tracks</h4>*@
 
-    @* ITEM DETAILS *@
-    <p class="viewProduct-itemDetails">Item Details</p><hr />
-    <table>
-        <tr>
-            <td class="viewProduct-itemDetails-col1">Artist</td>
-            <td class="viewProduct-itemDetails-col2">@Model.product.Artist</td>
-        </tr>
-        <tr>
-            <td class="viewProduct-itemDetails-col1">Format</td>
-            <td class="viewProduct-itemDetails-col2">@Model.product.Format</td>
-        </tr>
-        <tr>
-            <td class="viewProduct-itemDetails-col1">Total Tracks</td>
-            <td class="viewProduct-itemDetails-col2">@Model.product.TracksTotal</td>
-        </tr>
-        <tr>
-            <td class="viewProduct-itemDetails-col1">Sides</td>
-            <td class="viewProduct-itemDetails-col2">@Model.product.Sides</td>
-        </tr>
-        <tr>
-            <td class="viewProduct-itemDetails-col1">Released</td>
-            <td class="viewProduct-itemDetails-col2">@Model.product.ReleaseDate.Year</td>
-        </tr>
-        <tr>
-            <td class="viewProduct-itemDetails-col1">Label</td>
-            <td class="viewProduct-itemDetails-col2">@Model.product.Label</td>
-        </tr>
-        <tr>
-            <td class="viewProduct-itemDetails-col1">Genre</td>
-            <td class="viewProduct-itemDetails-col2">@Model.product.Genre</td>
-        </tr>
-    </table>
+        @* ITEM DETAILS *@
+        <p class="viewProduct-itemDetails">Item Details</p><hr />
+        <table>
+            <tr>
+                <td class="viewProduct-itemDetails-col1">Artist</td>
+                <td class="viewProduct-itemDetails-col2">@Model.product.Artist</td>
+            </tr>
+            <tr>
+                <td class="viewProduct-itemDetails-col1">Format</td>
+                <td class="viewProduct-itemDetails-col2">@Model.product.Format</td>
+            </tr>
+            <tr>
+                <td class="viewProduct-itemDetails-col1">Total Tracks</td>
+                <td class="viewProduct-itemDetails-col2">@Model.product.TracksTotal</td>
+            </tr>
+            <tr>
+                <td class="viewProduct-itemDetails-col1">Sides</td>
+                <td class="viewProduct-itemDetails-col2">@Model.product.Sides</td>
+            </tr>
+            <tr>
+                <td class="viewProduct-itemDetails-col1">Released</td>
+                <td class="viewProduct-itemDetails-col2">@Model.product.ReleaseDate.Year</td>
+            </tr>
+            <tr>
+                <td class="viewProduct-itemDetails-col1">Label</td>
+                <td class="viewProduct-itemDetails-col2">@Model.product.Label</td>
+            </tr>
+            <tr>
+                <td class="viewProduct-itemDetails-col1">Genre</td>
+                <td class="viewProduct-itemDetails-col2">@Model.product.Genre</td>
+            </tr>
+        </table>
 
-</div>
+    </div>
+</body>
