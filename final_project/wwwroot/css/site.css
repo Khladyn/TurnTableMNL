@@ -117,8 +117,7 @@ body {
     color: black
 }
 
-
-.cataglog-title {
+.catalog-title {
     margin-top: 0px;
     margin-bottom: 0px;
 }
@@ -685,3 +684,405 @@ p { /* paragraph */
         box-shadow: none;
     }
 
+.table-cart {
+    margin-top: 800px;
+    margin-bottom: 0px;
+}
+
+    .row-cart {
+    }
+
+        #row-cart-main {
+        }
+
+        #row-cart-sub {
+        }
+
+    #col-cart-label {
+        font-size: 18px;
+        font-weight: 600;
+        padding-top: 30px;
+        padding-bottom: 20px;
+        text-align: center;
+    }
+
+    #col-cart-item {
+        font-size: 15px;
+        font-weight: 400;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        text-align: center;
+        text-transform: capitalize;
+        text-align: center;
+    }
+
+        #col-cart-remove {
+            text-transform: capitalize;
+            text-align: center;
+            padding-left: 30px;
+        }
+
+            #removeLink {
+                color: #262626;
+                text-decoration: none;
+            }
+
+        #col-productArt {
+            text-transform: capitalize;
+            text-align: center;
+            padding-left: 35px;
+            padding-right: 20px;
+        }
+
+            #productArt {
+                width: 100px;
+                height: 100px;
+            }
+
+        #col-productLink {
+            text-transform: capitalize;
+            text-align: center;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
+            #productLink {
+                color: #262626;
+                text-decoration: underline;
+            }
+
+        #col-productArtist {
+            text-transform: capitalize;
+            text-align: center;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
+        #col-productType {
+            text-transform: uppercase;
+            text-align: center;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
+        #col-productPrice {
+            text-transform: capitalize;
+            text-align: right;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
+        #col-productQuantity-text {
+            text-transform: capitalize;
+            text-align: center;
+            text-align: center;
+            padding-left: 20px;
+            padding-right: 20px;
+            width: 200px;
+        }
+
+            #quantity-minus {
+                font-size: 15px;
+                font-weight: 400;
+                text-align: center;
+            }
+                
+                #minusButton {
+                    font-size: 17px;
+                    font-weight: 400;
+                    color: #262626;
+                    text-decoration: none;
+                    padding-right: 8px;
+                }
+
+            #quantity-input {
+                font-size: 15px;
+                font-weight: 400;
+                text-align: center;
+                width: 40px;
+            }
+
+            #quantity-add {
+                font-size: 15px;
+                font-weight: 400;
+                text-align: center;
+            }
+                
+                #addButton {
+                    font-size: 17px;
+                    font-weight: 400;
+                    color: #262626;
+                    text-decoration: none;
+                    padding-left: 8px;
+                }
+
+        #subtotal {
+            font-size: 15px;
+            font-weight: 600;
+            text-align: right;
+            padding-left: 20px;
+            padding-right: 40px;
+        }
+
+.checkout-text {
+    font-size: 20px;
+    font-weight: 400;
+    text-align: right;
+    text-transform: uppercase;
+    /* margins & padding */
+    margin-top: 40px;
+    margin-bottom: 60px;
+    margin-left: 10px;
+    margin-right: 0px;
+}
+
+#btn-checkout {
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    /* text */
+    color: #262626;
+    font-size: 20px;
+    font-weight: 400;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    /* button style */
+    background-color: #FEFEFA;
+    border: 1px solid #262626;
+    border-radius: 0px;
+    /* margins & padding */
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+    #btn-checkout:hover {
+        /* text */
+        color: #FEFEFA;
+        /* button style */
+        background-color: #262626;
+        border: 1px solid #262626;
+        box-shadow: none;
+    }
+
+    #btn-checkout::selection {
+        /* text */
+        color: #FEFEFA;
+        /* button style */
+        background-color: #262626;
+        border: 1px solid #262626;
+        box-shadow: none;
+    }
+
+#checkout-title-text {
+    font-size: 100px;
+    font-weight: 700;
+    text-align: left;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+}
+
+#checkoutForm-label {
+    font-size: 18px;
+    font-weight: 400;
+    text-align: left;
+    /* margins & padding */
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+#checkoutForm-textbox {
+    font-size: 15px;
+    font-weight: 400;
+    text-align: left;
+    outline: 1px solid #262626;
+    border-radius: 0px;
+    background-color: #FEFEFA;
+    /* margins & padding */
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 10px;
+    margin-bottom: 15px;
+}
+
+#checkoutForm-select {
+    font-size: 15px;
+    font-weight: 400;
+    text-align: left;
+    outline: 1px solid #262626;
+    border-radius: 0px;
+    background-color: #FEFEFA;
+    /* margins & padding */
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 10px;
+    margin-bottom: 15px;
+}
+
+.placeorder-text {
+    text-align: center;
+}
+
+#btn-placeorder {
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    /* text */
+    color: #262626;
+    font-size: 20px;
+    font-weight: 400;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    /* button style */
+    background-color: #FEFEFA;
+    border: 1px solid #262626;
+    border-radius: 0px;
+    /* margins & padding */
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-top: 30px;
+}
+
+    #btn-placeorder:hover {
+        /* text */
+        color: #FEFEFA;
+        /* button style */
+        background-color: #262626;
+        border: 1px solid #262626;
+        box-shadow: none;
+    }
+
+    #btn-placeorder::selection {
+        /* text */
+        color: #FEFEFA;
+        /* button style */
+        background-color: #262626;
+        border: 1px solid #262626;
+        box-shadow: none;
+    }
+
+.btn-login-text {
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 100px;
+}
+
+#btn-login {
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    /* text */
+    color: #262626;
+    font-size: 20px;
+    font-weight: 400;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    /* button style */
+    background-color: #FEFEFA;
+    border: 1px solid #262626;
+    border-radius: 0px;
+    /* margins & padding */
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-top: 30px;
+}
+
+    #btn-login:hover {
+        /* text */
+        color: #FEFEFA;
+        /* button style */
+        background-color: #262626;
+        border: 1px solid #262626;
+        box-shadow: none;
+    }
+
+    #btn-login::selection {
+        /* text */
+        color: #FEFEFA;
+        /* button style */
+        background-color: #262626;
+        border: 1px solid #262626;
+        box-shadow: none;
+    }
+
+.login-text {
+    text-align: center;
+    margin-top: 10px;
+}
+
+#login-title-text {
+    font-size: 100px;
+    font-weight: 700;
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 60px;
+}
+
+.loginLink-text {
+    font-size: 15px;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+    #loginLink {
+        font-weight: 700;
+        color: #262626;
+        text-decoration: none;
+    }
+
+        #loginLink:hover {
+            text-decoration: underline;
+        }
+
+#loginForm-label {
+    font-size: 18px;
+    font-weight: 400;
+    text-align: left;
+    /* margins & padding */
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+#loginForm-textbox {
+    font-size: 15px;
+    font-weight: 400;
+    text-align: left;
+    outline: 1px solid #262626;
+    border-radius: 0px;
+    background-color: #FEFEFA;
+    /* margins & padding */
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 10px;
+    margin-bottom: 15px;
+}
+
+#loginForm-select {
+    font-size: 15px;
+    font-weight: 400;
+    text-align: left;
+    outline: 1px solid #262626;
+    border-radius: 0px;
+    background-color: #FEFEFA;
+    /* margins & padding */
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 10px;
+    margin-bottom: 15px;
+}
+
+#body-registration {
+    margin-bottom: 150px;
+}

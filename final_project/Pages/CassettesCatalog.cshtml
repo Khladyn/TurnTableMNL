@@ -23,14 +23,18 @@
                 if (cassette.Type == "cassette")
                 {
                     <div class="product">
-                        <a asp-page="/ViewProduct" asp-route-id=@cassette.ProductID><img class="product-img" src="@cassette.CoverArt" width="250" /></a>
+                        <a asp-page="/ViewProduct" asp-route-id=@cassette.ProductID><img class="product-img" src="@cassette.CoverArt" /></a>
                         <div class="product-details">
+
+                            <p class="product-price">Php @cassette.Price.ToString("#,##0.00")</p>
+
                             <p class="product-price">Php @cassette.Price<span>.00</span>
                                 <span class="product-actions">
                                     <a asp-page="/Cart" asp-page-handler="Add" asp-route-id=@cassette.ProductID title="Add to cart">+</a>
                                     <a asp-page="/Favorites" asp-page-handler="Add" asp-route-id=@cassette.ProductID title="Add to faves">♡</a>
                                  </span>
                             </p>
+
                             <p class="product-album">@cassette.Album</p>
                             <p class="product-artist">@cassette.Artist</p>
 

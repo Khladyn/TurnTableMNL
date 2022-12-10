@@ -4,13 +4,14 @@
     ViewData["Title"] = "My Cart";
 }
 
-<body>
-    <div class="default-title">
-        <h1 id="default-title-text">My Cart</h1>
-    </div>
+<body class="body-cart">
+    <div class="cont-main">
+        <div class="default-title">
+            <h1 id="default-title-text">My Cart</h1>
+        </div>
 
-    @if(Model.cart == null || Model.cart.Count == 0)
-    {
+        @if (Model.cart == null || Model.cart.Count == 0)
+        {
             <div>
                 <div class="info-title">
                     <p class="info-title-text"> @Model.emptyCart </p>
@@ -23,131 +24,111 @@
                     <a asp-page="/CDsCatalog" class="btn btn-default" id="btn-browse"> Browse CDs >> </a>
                 </p>
             </div>
-    }
-    else
-    {
+        }
+        else
+        {
 
-        <table class="table table-striped">
+            <table class="table table-striped" id="table-cart">
 
-            <thead>
-                <tr>
-                    <th scope="col" class="text-center" style="width:4%"></th>
-                    <th scope="col" class="text-center col-1"> Cover Art </th>
-                    <th scope="col" class="text-center col-1"> Product Item </th>
-                    <th scope="col" class="text-center col-1"> Artist Name </th>
-                    <th scope="col" class="text-center col-1"> Product Type </th>
-                    <th scope="col" class="text-center col-1"> Price </th>
-                    <th scope="col" class="text-center col-1"> Quantity </th>
-                    <th scope="col" class="text-center col-1"> Subtotal </th>
-                </tr>
-            </thead>
-            <tbody>
+                <thead>
+                    <tr class="row-cart" id="row-cart-main">
+                        <th scope="col" class="text-center" style="width:4%" id="col-cart-label"></th>
+                        <th scope="col" class="text-center col-1" id="col-cart-label"> </th>
+                        <th scope="col" class="text-center col-3" id="col-cart-label"> Product </th>
+                        <th scope="col" class="text-center col-3" id="col-cart-label"> Artist </th>
+                        <th scope="col" class="text-center col-1" id="col-cart-label"> Type </th>
+                        <th scope="col" class="text-center col-1" id="col-cart-label"> Price </th>
+                        <th scope="col" class="text-center col-1" id="col-cart-label"> Quantity </th>
+                        <th scope="col" class="text-center col-2" id="col-cart-label"> Subtotal </th>
+                    </tr>
+                </thead>
+                <tbody>
 
-                @foreach (var cartItem in Model.cart)
-                {
+                    @foreach (var cartItem in Model.cart)
+                    {
+                        <tr class="row-cart" id="row-cart-sub">
 
-                    <tr>
-                        <td class="text-center align-middle">
-                            <a asp-page="/Cart"
-                               asp-page-handler="Remove"
-                               asp-route-id=@cartItem.ProductID>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
-                                    <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z" />
-                                </svg>
-                            </a>
-                        </td>
+                            @* COLUMN - REMOVE *@
+                            <td class="text-center align-middle" id="col-cart-item">
+                                <p id="col-cart-remove">
+                                    <a asp-page="/Cart" asp-page-handler="Remove" asp-route-id=@cartItem.ProductID id="removeLink">X</a>
+                                </p>
+                            </td>
 
-                        <td class="text-center align-middle">
-                            <img src=@cartItem.CoverArt alt="cover art" width="100" />
-                        </td>
-                        <td class="text-center align-middle">
-                            <h6>
-                                <a
-                                    asp-page="/ViewProduct"
-                                    asp-route-id=@cartItem.ProductID>
-                                        @cartItem.Album
-                                </a>
-                            </h6>
-                        </td>
-                        <td class="text-center align-middle"> @cartItem.Artist </td>
-                        <td class="text-center align-middle"> @cartItem.Type </td>
-                        <td class="text-center align-middle"> @cartItem.Price.ToString("#,##0.00") </td>
-                        <td class="text-center align-middle">
+                            @* COLUMN - PRODUCT ART *@
+                            <td class="text-center align-middle" id="col-cart-item"><p id="col-productArt"><img src=@cartItem.CoverArt alt="cover art" id="productArt" /></p></td>
 
-                            <a asp-page-handler="Decrease"
-                               asp-route-id=@cartItem.ProductID
-                               class="text-black">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dash-lg" viewBox="0 0 16 16">
-                                    <path fill-rule="evenodd" d="M2 8a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11A.5.5 0 0 1 2 8Z" />
-                                </svg>
-                            </a>
+                            @* COLUMN - PRODUCT LINK *@
+                            <td class="text-center align-middle" id="col-cart-item">
+                                <p id="col-productLink">
+                                    <a asp-page="/ViewProduct" asp-route-id=@cartItem.ProductID id="productLink"> @cartItem.Album </a>
+                                </p>
+                            </td>
 
-                            <input
-                                type="number"
-                                name="quantity"
-                                value=@cartItem.Quantity
-                                min="0"
-                                class="text-center col-4"
-                                readonly />
+                            @* COLUMN - PRODUCT ARTIST *@
+                            <td class="text-center align-middle" id="col-cart-item"><p id="col-productArtist"> @cartItem.Artist </p></td>
 
+                            @* COLUMN - PRODUCT TYPE *@
+                            <td class="text-center align-middle" id="col-cart-item"><p id="col-productType"> @cartItem.Type </p></td>
 
-                            <a asp-page-handler="Increase"
-                                asp-route-id=@cartItem.ProductID
-                                class="text-black" >
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
-                                    <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z" />
-                                </svg>
-                            </a>
-                        </td>
-                        <td class="text-center align-middle">
-                            <h6 id="subtotal"> @cartItem.Subtotal.ToString("#,##0.00") </h6>
-                        </td>
+                            @* COLUMN - PRODUCT PRICE *@
+                            <td class="text-center align-middle" id="col-cart-item"><p id="col-productPrice">  @cartItem.Price.ToString("#,##0.00") </p></td>
+
+                            @* COLUMN - ARTIST *@
+                            <td class="text-center align-middle" id="col-cart-item">
+                                <p id="col-productQuantity-text">
+                                    <a asp-page-handler="Decrease" asp-route-id=@cartItem.ProductID id="minusButton">–</a>
+                                    <span>
+                                        <input type="number" name="quantity" value=@cartItem.Quantity min="0" class="text-center" id="quantity-input" readonly />
+                                    </span>
+                                    <a asp-page-handler="Increase" asp-route-id=@cartItem.ProductID id="addButton">+</a>
+                                </p>
+                            </td>
+
+                            <td class="text-center align-middle" id="col-cart-item"><p id="subtotal"> @cartItem.Subtotal.ToString("#,##0.00") </p></td>
+                        </tr>
+
+                        Model.total += cartItem.Subtotal;
+
+                    }
+                    <tr class="bg-dark">
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td class="text-center align-middle text-white" id="test"></td>
+                        <td class="text-center align-middle text-white"> Total: </td>
+                        <td class="text-center align-middle text-white fw-bold" id="total"> Php @Model.total.ToString("#,##0.00") </td>
                     </tr>
 
-                    Model.total += cartItem.Subtotal;
+                </tbody>
+            </table>
 
-                }
-                <tr class="bg-dark">
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td class="text-center align-middle text-white" id="test"></td>
-                    <td class="text-center align-middle text-white"> Total: </td>
-                    <td class="text-center align-middle text-white fw-bold" id="total"> PHP @Model.total.ToString("#,##0.00") </td>
-                </tr>
+            @*
+        <script>
 
-            </tbody>
-        </table>
+        var quantity = document.getElementsByTagName('input');
 
+        for (var i = 0; i < quantity.length; i++) {
 
-    @*    <script>
+        quantity[i].addEventListener('input', function(e)
+        {
+        var parent = e.target.parentNode;
+        var price = parent.previousElementSibling.innerHTML;
+        var subtotal = parent.nextElementSibling.childNodes[1];
+        subtotal.innerHTML = (e.target.value * price).toFixed(2);
 
-            var quantity = document.getElementsByTagName('input');
+        });
+        }
 
-            for (var i = 0; i < quantity.length; i++) {
+        </script>
+        *@
 
-                quantity[i].addEventListener('input', function(e)
-                {
-                    var parent = e.target.parentNode;
-                    var price = parent.previousElementSibling.innerHTML;
-                    var subtotal = parent.nextElementSibling.childNodes[1];
-                    subtotal.innerHTML = (e.target.value * price).toFixed(2);
-
-                });
-            }
-
-        </script>*@
-
-        <a asp-page="/Checkout"
-           asp-route-id=@Model.cart>
-            <button class="btn btn-primary">
-                Checkout
-            </button>
-        </a>
-        <button onclick="history.back()" class="btn btn-secondary"> Go back </button>
-
-
-    }
+            @* CHECKOUT BUTTON *@
+            <p class="checkout-text">
+                <a class="btn btn-default" id="btn-checkout" asp-page="/Checkout" asp-route-id=@Model.cart>Checkout >></a>
+            </p>
+        }
+    </div>
 </body>
