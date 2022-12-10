@@ -35,6 +35,10 @@
                         <a asp-page="/ViewProduct" asp-route-id=@favorite.ProductID><img class="product-img" src="@favorite.CoverArt" /></a>
                         <div class="product-details">
                             <p class="product-price">Php @favorite.Price.ToString("#,##0.00")</p>
+                            <span class="product-actions">
+                            <a asp-page="/Cart" asp-page-handler="Add" asp-route-id=@favorite.ProductID title="Add to cart">+</a>
+                            <a asp-page="/Favorites" asp-page-handler="Remove" asp-route-id=@favorite.ProductID title="Remove from faves">—</a>
+                            </span>
                             <p class="product-album">@favorite.Album</p>
                             <p class="product-artist">@favorite.Artist</p>
                         </div>

@@ -26,12 +26,10 @@
                         <a asp-page="/ViewProduct" asp-route-id=@cd.ProductID><img class="product-img" src="@cd.CoverArt" /></a>
                         <div class="product-details">
                             <p class="product-price">Php @cd.Price.ToString("#,##0.00")</p>
-                            <p class="product-price">Php @cd.Price<span>.00</span>
-                                <span class="product-actions">
-                                    <a asp-page="/Cart" asp-page-handler="Add" asp-route-id=@cd.ProductID title="Add to cart">+</a>
-                                    <a asp-page="/Favorites" asp-page-handler="Add" asp-route-id=@cd.ProductID title="Add to faves">♡</a>
-                                </span>
-                            </p>
+                            <span class="product-actions">
+                                <a asp-page="/Cart" asp-page-handler="Add" asp-route-id=@cd.ProductID title="Add to cart">+</a>
+                                <a asp-page="/Favorites" asp-page-handler="Add" asp-route-id=@cd.ProductID title="Add to faves">♡</a>
+                            </span>
                             <p class="product-album">@cd.Album</p>
                             <p class="product-artist">@cd.Artist</p>
                         </div>
