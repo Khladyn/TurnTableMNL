@@ -40,14 +40,15 @@
                                             <li class="nav-item" title="Orders">
                                                 <a class="nav-link text-dark" asp-area="" asp-page="/OrdersList">Orders</a>
                                             </li>
+                                            <li class="nav-item" title="Logout">
+                                                <a method="post" class="nav-link text-dark" asp-area="" asp-page="Logout">LOGOUT</a>
+                                            </li>
+
                                         </ul>
                                     </div>
 
                                     <div class="mr-2">
-                                        <form method="post" class="form-inline" asp-page="/Logout">
-                                            @*Welcome, @User.Identity.Name*@
-                                            <button type="submit" class="m-lg-2 btn" title="LOGOUT">LOGOUT</button>
-                                        </form>
+
                                     </div>
                                 </div>
                             </nav>
