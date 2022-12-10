@@ -24,9 +24,7 @@
                     <div class="product">
                         <a asp-page="/ViewProduct" asp-route-id=@vinyl.ProductID><img class="product-img" src="@vinyl.CoverArt" /></a>
                         <div class="product-details">
-                            <p class="product-price">Php @vinyl.Price.ToString("#,##0.00")</p>
-
-                            <p class="product-price">Php @vinyl.Price<span>.00</span>
+                            <p class="product-price">Php @vinyl.Price.ToString("#,##0.00")
                                 <span class="product-actions">
                                     <a asp-page="/Cart" asp-page-handler="Add" asp-route-id=@vinyl.ProductID title="Add to cart">+</a>
                                     <a asp-page="/Favorites" asp-page-handler="Add" asp-route-id=@vinyl.ProductID title="Add to faves">♡</a>
