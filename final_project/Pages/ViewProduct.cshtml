@@ -22,7 +22,7 @@
         <hr />
 
         @* PRODUCT PRICE *@
-        <p class="viewProduct-price">Php @Model.product.Price<span>.00</span></p>
+        <p class="viewProduct-price">Php @Model.product.Price.ToString("#,##0.00")</p>
 
         @* ADD TO CART & FAVORITES BUTTON *@
         <p class="addTo-text">
