@@ -104,7 +104,7 @@ body {
     height: fit-content;
 }
 
-.cataglog-title {
+.catalog-title {
     margin-top: 0px;
     margin-bottom: 0px;
 }
@@ -932,3 +932,122 @@ p { /* paragraph */
         border: 1px solid #262626;
         box-shadow: none;
     }
+
+.btn-login-text {
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 100px;
+}
+
+#btn-login {
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    /* text */
+    color: #262626;
+    font-size: 20px;
+    font-weight: 400;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    /* button style */
+    background-color: #FEFEFA;
+    border: 1px solid #262626;
+    border-radius: 0px;
+    /* margins & padding */
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-top: 30px;
+}
+
+    #btn-login:hover {
+        /* text */
+        color: #FEFEFA;
+        /* button style */
+        background-color: #262626;
+        border: 1px solid #262626;
+        box-shadow: none;
+    }
+
+    #btn-login::selection {
+        /* text */
+        color: #FEFEFA;
+        /* button style */
+        background-color: #262626;
+        border: 1px solid #262626;
+        box-shadow: none;
+    }
+
+.login-text {
+    text-align: center;
+    margin-top: 10px;
+}
+
+#login-title-text {
+    font-size: 100px;
+    font-weight: 700;
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 60px;
+}
+
+.loginLink-text {
+    font-size: 15px;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+    #loginLink {
+        font-weight: 700;
+        color: #262626;
+        text-decoration: none;
+    }
+
+        #loginLink:hover {
+            text-decoration: underline;
+        }
+
+#loginForm-label {
+    font-size: 18px;
+    font-weight: 400;
+    text-align: left;
+    /* margins & padding */
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+#loginForm-textbox {
+    font-size: 15px;
+    font-weight: 400;
+    text-align: left;
+    outline: 1px solid #262626;
+    border-radius: 0px;
+    background-color: #FEFEFA;
+    /* margins & padding */
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 10px;
+    margin-bottom: 15px;
+}
+
+#loginForm-select {
+    font-size: 15px;
+    font-weight: 400;
+    text-align: left;
+    outline: 1px solid #262626;
+    border-radius: 0px;
+    background-color: #FEFEFA;
+    /* margins & padding */
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 10px;
+    margin-bottom: 15px;
+}
+
+#body-registration {
+    margin-bottom: 150px;
+}

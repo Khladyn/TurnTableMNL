@@ -3,47 +3,45 @@
 @{
 }
 
-<body class="h-100">
-
-    <h3 class="text-center text-black mt-5 p-3"> @ViewData["Title"] </h3>
-
-    <div class="container border p-4 col-4 d-flex flex-column mb-5">
-
+<body id="body-registration">
     <form method="post" autocomplete="off">
 
+        <div class="login-title">
+                <h1 id="login-title-text">@ViewData["Title"]</h1>
+        </div>
 
         @* USERNAME *@
         <div class="form-group-row d-flex flex-column">
-                <label asp-for=@Model.User.Username class="form-label my-2"></label>
-                <input asp-for=@Model.User.Username class="form-control" />
+                <label asp-for=@Model.User.Username class="form-label my-2" id="loginForm-label"></label>
+                <input asp-for=@Model.User.Username class="form-control" id="loginForm-textbox"/>
             <span asp-validation-for=@Model.User.Username class="text-danger"></span>
         </div>
 
             @* PASSWORD *@
             <div class="form-group-row d-flex flex-column">
-                <label asp-for=@Model.User.Password class="form-label my-2"></label>
-                <input asp-for=@Model.User.Password class="form-control" required />
+                <label asp-for=@Model.User.Password class="form-label my-2" id="loginForm-label"></label>
+                <input asp-for=@Model.User.Password class="form-control" id="loginForm-textbox" required />
                 <span asp-validation-for=@Model.User.Password class="text-danger"></span>
             </div>
 
             @* RETYPE PASSWORD *@
             <div class="form-group-row d-flex flex-column">
-                <label asp-for=@Model.User.Repassword class="form-label my-2"></label>
-                <input asp-for=@Model.User.Repassword class="form-control" required />
+                <label asp-for=@Model.User.Repassword class="form-label my-2" id="loginForm-label"></label>
+                <input asp-for=@Model.User.Repassword class="form-control" id="loginForm-textbox" required />
                 <span asp-validation-for=@Model.User.Repassword class="text-danger"></span>
             </div>
 
             @* EMAIL *@
             <div class="form-group-row d-flex flex-column">
-                <label asp-for=@Model.User.Email class="form-label my-2"></label>
-                <input asp-for=@Model.User.Email class="form-control" required />
+                <label asp-for=@Model.User.Email class="form-label my-2" id="loginForm-label"></label>
+                <input asp-for=@Model.User.Email class="form-control" id="loginForm-textbox" required />
                 <span asp-validation-for=@Model.User.Email class="text-danger"></span>
             </div>
 
             @* PREFIX *@
             <div class="form-group-row d-flex flex-column">
-                <label asp-for=@Model.User.Prefix class="form-label my-2"></label>
-                <select asp-for=@Model.User.Prefix class="form-select">
+                <label asp-for=@Model.User.Prefix class="form-label my-2" id="loginForm-label"></label>
+                <select asp-for=@Model.User.Prefix class="form-select" id="loginForm-select">
                     <option value="Mr."> Mr. </option>
                     <option value="Ms."> Ms. </option>
                     <option value="Mrs."> Mrs. </option>
@@ -53,43 +51,43 @@
 
             @* FIRST NAME *@
             <div class="form-group-row d-flex flex-column">
-                <label asp-for=@Model.User.FirstName class="form-label my-2"></label>
-                <input asp-for=@Model.User.FirstName class="form-control" required />
+                <label asp-for=@Model.User.FirstName class="form-label my-2" id="loginForm-label"></label>
+                <input asp-for=@Model.User.FirstName class="form-control" id="loginForm-textbox"required />
                 <span asp-validation-for=@Model.User.FirstName class="text-danger"></span>
             </div>
 
             @* LAST NAME *@
             <div class="form-group-row d-flex flex-column">
-                <label asp-for=@Model.User.LastName class="form-label my-2"></label>
-                <input asp-for=@Model.User.LastName class="form-control" required />
+                <label asp-for=@Model.User.LastName class="form-label my-2" id="loginForm-label"></label>
+                <input asp-for=@Model.User.LastName class="form-control" id="loginForm-textbox"required />
                 <span asp-validation-for=@Model.User.LastName class="text-danger"></span>
             </div>
 
             @* ADDRESS *@
             <div class="form-group-row d-flex flex-column">
-                <label asp-for=@Model.User.Address class="form-label my-2"></label>
-                <input asp-for=@Model.User.Address class="form-control" required />
+                <label asp-for=@Model.User.Address class="form-label my-2" id="loginForm-label"></label>
+                <input asp-for=@Model.User.Address class="form-control" id="loginForm-textbox"required />
                 <span asp-validation-for=@Model.User.Address class="text-danger"></span>
             </div>
 
             @* CONTACT NO. *@
             <div class="form-group-row d-flex flex-column">
-                <label asp-for=@Model.User.ContactNumber class="form-label my-2"></label>
-                <input asp-for=@Model.User.ContactNumber class="form-control" required />
+                <label asp-for=@Model.User.ContactNumber class="form-label my-2" id="loginForm-label"></label>
+                <input asp-for=@Model.User.ContactNumber class="form-control" id="loginForm-textbox"required />
                 <span asp-validation-for=@Model.User.ContactNumber class="text-danger"></span>
             </div>
 
             @* BIRTHDATE *@
             <div class="form-group-row d-flex flex-column">
-                <label asp-for=@Model.User.Birthdate class="form-label my-2"></label>
-                <input asp-for=@Model.User.Birthdate class="form-control" required />
+                <label asp-for=@Model.User.Birthdate class="form-label my-2" id="loginForm-label"></label>
+                <input asp-for=@Model.User.Birthdate class="form-control" id="loginForm-textbox"required />
                 <span asp-validation-for=@Model.User.Birthdate class="text-danger"></span>
             </div>
 
             @* ROLE *@
             <div class="form-group-row d-flex flex-column">
-                <label asp-for=@Model.User.Role class="form-label my-2"></label>
-                <select asp-for=@Model.User.Role class="form-select">
+                <label asp-for=@Model.User.Role class="form-label my-2" id="loginForm-label"></label>
+                <select asp-for=@Model.User.Role class="form-select" id="loginForm-select">
                     <option value="customer"> Customer </option>
                     <option value="admin"> Admin </option>
                 </select>
@@ -101,24 +99,14 @@
         }
 
         @* SIGN UP BUTTON *@
-        <div class="mt-4 text-center">
-            <input type="submit" class="btn btn-primary w-100" id="" value="Sign up" />
-        </div>
+        <p class="btn-login-text">
+            <input type="submit" class="btn btn-default" id="btn-login" value="Sign up >>" />
+        </p>
 
         @* LINK TO LOGIN PAGE *@
-        <div class="p-2 text-center"> @*d-flex justify-content-between*@
-            Already have an account? <a asp-page="/Login">Login here</a>.
-        </div>
+        <p class="loginLink-text">
+            Already have an account? <a asp-page="/Login" id="loginLink">Login here</a>.
+        </p>
 
-
-        }
-        else if (!User.Identity.IsAuthenticated)
-        {
-               <div class="mt-2 p-2 text-center">
-                     <a asp-page="/Login"> Login </a>
-               </div>
-
-        } else {}
     </form>
-    </div>
 </body>
