@@ -11,7 +11,7 @@
     }
 }
 
-<body>
+<body id="body-orderslist">
     <div class="default-title">
         <h1 id="default-title-text">My Orders</h1>
     </div>
@@ -40,17 +40,17 @@
     else
     {
 
-        <table class="table table-striped">
+        <table class="table table-striped" id="table-cart">
 
             <thead>
-                <tr>
-                    <th scope="col" class="text-center col-1"> Order Status </th>
-                    <th scope="col" class="text-center col-2"> Purchaser Info </th>
-                    <th scope="col" class="text-center col-2"> Mode of Payment </th>
-                    <th scope="col" class="text-center col-2"> Product Info </th>
-                    <th scope="col" class="text-center col-1"> Price </th>
-                    <th scope="col" class="text-center col-1"> Quantity </th>
-                    <th scope="col" class="text-center col-1"> Subtotal </th>
+                <tr class="row-cart" id="row-cart-main">
+                    <th scope="col" class="text-center col-1" id="col-cart-label"> Order Status </th>
+                    <th scope="col" class="text-center col-2" id="col-cart-label"> Purchaser Info </th>
+                    <th scope="col" class="text-center col-2" id="col-cart-label"> Mode of Payment </th>
+                    <th scope="col" class="text-center col-2" id="col-cart-label"> Product Info </th>
+                    <th scope="col" class="text-center col-1" id="col-cart-label"> Price </th>
+                    <th scope="col" class="text-center col-1" id="col-cart-label"> Quantity </th>
+                    <th scope="col" class="text-center col-2" id="col-cart-label"> Subtotal </th>
                 </tr>
             </thead>
             <tbody>
@@ -59,7 +59,7 @@
                 {
 
                     <tr>
-                        <td class="align-middle px-4">
+                        <td class="align-middle px-4" id="col-cart-item">
                             <div> #@orderItem.OrderID </div>
                             <div class="h6 badge
                             @(orderItem.OrderStatus == "Cancelled"
@@ -82,7 +82,7 @@
                             </div>
                         </td>
 
-                        <td class="align-middle px-4">
+                        <td class="align-middle px-4" id="col-cart-item">
                             <div> <b> Username: </b> @orderItem.Username </div>
                             <div> <b> Full Name: </b> @orderItem.FirstName @orderItem.LastName </div>
                             <div> <b> Address: </b>  @orderItem.Address </div>
@@ -90,11 +90,11 @@
                             <div> <b> Contact #: </b>  @orderItem.ContactNumber </div>
 
                         </td>
-                        <td class="text-center align-middle">
+                        <td class="text-center align-middle" id="col-cart-item">
                             <div> @orderItem.ModeOfPayment </div>
                             <div> @orderItem.DateAdded </div>
                         </td>
-                        <td class="align-middle px-4">
+                        <td class="align-middle px-4" id="col-cart-item">
                             <div>
                                 <b> Album: </b>
                                 <a asp-page="/ViewProduct"
@@ -105,8 +105,8 @@
                             <div> <b> Artist: </b> @orderItem.Artist </div>
                             <b> Type: </b> <div class="badge alert-dark"> @orderItem.Type </div>
                         </td>
-                        <td class="align-middle px-4" style="text-align: right"> @orderItem.Price.ToString("#,##0.00") </td>
-                        <td class="text-center align-middle">
+                        <td class="align-middle px-4" style="text-align: right" id="col-cart-item"> @orderItem.Price.ToString("#,##0.00") </td>
+                        <td class="text-center align-middle" id="col-cart-item">
                             <input type="number"
                            name="quantity"
                            value=@orderItem.Quantity
@@ -114,7 +114,7 @@
                            class="col-4"
                            disabled />
                         </td>
-                        <td class="align-middle px-4" style="text-align: right">
+                        <td class="align-middle px-4" style="text-align: right" id="col-cart-item">
                             <h6 id="subtotal"> @orderItem.Subtotal.ToString("#,##0.00") </h6>
                         </td>
                     </tr>
@@ -134,9 +134,6 @@
 
             </tbody>
         </table>
-
-        <button onclick="history.back()" class="btn btn-secondary"> Go back </button>
-
 
     }
 </body>
